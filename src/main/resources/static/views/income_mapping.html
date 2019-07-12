@@ -1,0 +1,97 @@
+<div class="row" ng-controller="IncomeMappingController">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="width: 1760px">
+                <div class="card-body">
+                    <div class="row" style="margin-bottom: 8px">
+                        <div class="col-md-12">
+                            <span class="card-title" style="font-size: 18px">收款规则表</span>
+                            <span style="margin-left: 88%"><button data-toggle="modal" data-target="#AddIncomeMappingModal" type="button" class="btn btn-sm waves-effect waves-light  btn-warning"><i class="fa fa-plus"></i></button></span>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                           <thead>
+                           <tr>
+                               <th style="text-align: center;width: 110px">法律主体</th>
+                               <th style="text-align: center;width: 110px">银行账户</th>
+                               <th style="text-align: center;width: 110px">银行账号</th>
+                               <th style="text-align: center;width: 110px">对方账号名称</th>
+                               <th style="text-align: center;width: 110px">摘要</th>
+                               <th style="text-align: center;width: 110px">收款渠道</th>
+                               <th style="text-align: center;width: 110px">所属区域</th>
+                               <th style="text-align: center;width: 110px">操作</th>
+                           </tr>
+                           </thead>
+                            <tbody>
+                            <tr ng-repeat=" i in incomemappinglist">
+                                <td style="text-align: center">{{i.legelMajority}}</td>
+                                <td style="text-align: center">{{i.bankAccount}}</td>
+                                <td style="text-align: center">{{i.bankNumber}}</td>
+                                <td style="text-align: center">{{i.otherAccountName}}</td>
+                                <td style="text-align: center">{{i.tradeAbstract}}</td>
+                                <td style="text-align: center">{{i.receivingChannel}}</td>
+                                <td style="text-align: center">{{i.tradeScope}}</td>
+                                <td style="text-align: center"><button style="cursor: pointer" ng-click="deleteIncomeMapping(i.id)"><i class="fa fa-trash"></i></button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-md-8" style="margin-left: 10px">
+                            <pagination data="data" option="option"
+                                        mappinglist ="incomemappinglist"></pagination>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <h5>{{'共计: '+data.length+' 条 数据'}}</h5>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="AddIncomeMappingModal" tabindex="-1" role="dialog"  style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: -webkit-linear-gradient(top, #7D1A15,#D72C24);">
+                    <h4 class="modal-title"  style="color: white">添加收款规则</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <form  >
+                        <div class="form-group">
+                            <label for="legelMajority" class="control-label">法律主体:</label>
+                            <input type="text" class="form-control" id="legelMajority" ng-model="incomemappingdomain.legelMajority"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="bankAccount" class="control-label">银行账户:</label>
+                            <input type="text" class="form-control" id="bankAccount" ng-model="incomemappingdomain.bankAccount"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="bankNumber" class="control-label">银行账号:</label>
+                            <input type="text" class="form-control" id="bankNumber" ng-model="incomemappingdomain.bankNumber"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="otherAccountName" class="control-label">对方账号名称:</label>
+                            <input type="text" class="form-control" id="otherAccountName" ng-model="incomemappingdomain.otherAccountName"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="tradeAbstract" class="control-label">摘要:</label>
+                            <input type="text" class="form-control" id="tradeAbstract" ng-model="incomemappingdomain.tradeAbstract"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="receivingChannel" class="control-label">收款渠道:</label>
+                            <input type="text" class="form-control" id="receivingChannel" ng-model="incomemappingdomain.receivingChannel"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="addIncomeMapping()" >提交</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

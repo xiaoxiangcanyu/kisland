@@ -1,0 +1,125 @@
+<div  ng-controller="ChinaBankController">
+    <h4>{{$root.companyName}}</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="width:  67%;">
+                <div class="card-body" style="width:100%;">
+                    <div class="starttime" style="text-align: center;display: inline-block;margin-right: 15px;margin-top: 39px">
+                        <span><label class="h4" style="color:#B0BEC5" >请选择起始时间:</label></span>
+                        <span>
+                                          <wui-date
+                                                  format="yyyy-mm-dd"
+                                                  placeholder="起始时间"
+                                                  id="startTime"
+                                                  btns="{'ok':'确定','now':'此刻'}"
+                                                  ng-model="startTime"
+                                          >
+                                    </wui-date>
+                                    </span>
+
+                    </div>
+                    <div class=endtime" style="text-align: center;display: inline-block;margin-right: 30px;margin-top: 39px">
+                        <span><label class="h4" style="color:#B0BEC5" >请选择截止时间:</label></span>
+                        <span>
+                                          <wui-date
+
+                                                  format="yyyy-mm-dd"
+                                                  placeholder="截止时间"
+                                                  id="endTime"
+                                                  btns="{'ok':'确定','now':'此刻'}"
+                                                  ng-model="endTime"
+                                          >
+                                    </wui-date>
+                                    </span>
+                    </div>
+                    <div class="form-group" style="display:inline-block;text-align: center;margin-right: 10px">
+                        <h5 style="color: red" ng-if="errormessage!=''">{{errormessage}}</h5>
+                    </div>
+                    <div style="width: 263px;height:12px;display: inline-block" ng-if="errormessage==''"></div>
+                    <div class="form-group" style="display:inline-block;text-align:center">
+                        <input type="button" class="btn  btn-success btn-lg" value="查询" ng-click="getByStartAndEnd()" style="padding: 19px 33px;line-height:7px">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">中国银行</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>交易类型</th>
+                                <th>业务类型</th>
+                                <th>付款人开户行号</th>
+                                <th>付款人开户行名</th>
+                                <th>付款人账号</th>
+                                <th>付款人名称</th>
+                                <th>收款人开户行行号</th>
+                                <th>收款人开户行名</th>
+                                <th>收款人账号</th>
+                                <th>收款人名称</th>
+                                <th>交易日期</th>
+                                <th>交易时间</th>
+                                <th>交易货币</th>
+                                <th>交易金额</th>
+                                <th>交易后余额</th>
+                                <th>起息日期</th>
+                                <th>汇率</th>
+                                <th>交易流水号</th>
+                                <th>客户申请号</th>
+                                <th>客户业务编号</th>
+                                <th>凭证类型</th>
+                                <th>凭证号码</th>
+                                <th>记录标识号</th>
+                                <th>摘要</th>
+                                <th>用途</th>
+                                <th>交易附言</th>
+                                <th>备注</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="i in chinabankdata">
+                                <td>{{i.transactionType}}</td>
+                                <td>{{i.businessType}}</td>
+                                <td>{{i.accountHoldingBankNumberPayer}}</td>
+                                <td>{{i.payerAccountBank}}</td>
+                                <td>{{i.debitAccountNo}}</td>
+                                <td>{{i.payerName}}</td>
+                                <td>{{i.accountHoldingBeneficiaryBankNumber}}</td>
+                                <td>{{i.beneficiaryAccountBank}}</td>
+                                <td>{{i.payeeAccountNumber}}</td>
+                                <td>{{i.payeeName}}</td>
+                                <td>{{i.transactionDate}}</td>
+                                <td>{{i.transactionTime}}</td>
+                                <td>{{i.tradeCurrency}}</td>
+                                <td>{{i.tradeAmount}}</td>
+                                <td>{{i.afterTransactionBalance}}</td>
+                                <td>{{i.valueDate}}</td>
+                                <td>{{i.exchangeRate}}</td>
+                                <td>{{i.transactionReferenceNumber}}</td>
+                                <td>{{i.onlineBankingTransactionRef}}</td>
+                                <td>{{i.customerTransactionRef}}</td>
+                                <td>{{i.voucherType}}</td>
+                                <td>{{i.voucherNumber}}</td>
+                                <td>{{i.recordId}}</td>
+                                <td>{{i.reference}}</td>
+                                <td>{{i.purpose}}</td>
+                                <td>{{i.remark}}</td>
+                                <td>{{i.remarks}}</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

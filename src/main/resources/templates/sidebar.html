@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="sidebar">
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+            <!-- User profile -->
+            <div class="user-profile" style="background: url(assets/images/background/user-info.jpg) no-repeat;">
+                <!-- User profile image -->
+                <div class="profile-img"><img src="assets/images/users/1.jpg" alt="user"/></div>
+                <div class="profile-text"><a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown"
+                                             role="button" aria-haspopup="true" aria-expanded="true">当前用户: 宋宇</a>
+                    <div class="dropdown-menu animated flipInY">
+                        <a href="#" class="dropdown-item"><i class="mdi mdi-minecraft"></i> 宋均强</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item"><i class="mdi mdi-copyright"></i> 于兰</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item"><i class="mdi mdi-copyright"></i> 刘晓静</a>
+                    </div>
+                </div>
+            </div>
+            <!-- End User profile text-->
+            <!-- Sidebar navigation-->
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <li>
+                        <a class="has-arrow " href="#" aria-expanded="false"><i
+                                class="mdi mdi-temperature-kelvin"></i><span
+                                class="hide-menu">区域选择</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li>
+                                <a class="has-arrow " href="#" aria-expanded="false"><i
+                                        class="mdi mdi-temperature-kelvin"></i><span
+                                        class="hide-menu">北区</span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">凯奇乐</span></a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">本部</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MinShengBank({'companytitle':'凯奇乐本部'})">中国民生银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">天津南开分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京凯奇乐商业有限公司天津南开区分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">天津南开二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京凯奇乐商业有限公司天津南开区第二分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">青岛第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="ChinaBank({'companytitle':'北京凯奇乐商业有限公司青岛第一分公司'})">中国银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">青岛第五分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司青岛第五分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">天津和平一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京凯奇乐商业有限公司天津和平区第一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">天津和平三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京凯奇乐商业有限公司天津和平区第三分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">凯知乐</span></a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a ui-sref="AgriculturalBank({'companytitle':'凯知乐贸易（天津）有限公司'})">中国农业银行</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="has-arrow " href="#" aria-expanded="false"><span
+                                            class="hide-menu">北京孩思乐</span></a>
+                                        <ul aria-expanded="false" class="collapse" style="padding-left: 0">
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">商业有限公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li><a ui-sref="MerchantsBank({'companytitle':'北京孩思乐商业有限公司'})">中国招商银行</a>
+                                                    </li>
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司'})">中国建设银行</a>
+                                                    </li>
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司'})">中国工商银行</a>
+                                                    </li>
+                                                    <li>
+                                                        <a ui-sref="MinShengBank({'companytitle':'北京孩思乐商业有限公司'})">中国民生银行</a>
+                                                    </li>
+                                                    <li>
+                                                        <a ui-sref="ChinaBank({'companytitle':'北京孩思乐商业有限公司'})">中国银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">哈尔滨第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'北京孩思乐商业有限公司哈尔滨第一分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <!--<li><a class="has-arrow " href="#" aria-expanded="false">-->
+                                              <!--<span-->
+                                                      <!--class="hide-menu">哈尔滨第二分公司</span></a>-->
+                                                <!--<ul aria-expanded="false" class="collapse">-->
+                                                    <!--<li>-->
+                                                        <!--<a ui-sref="MerchantsBank({'companytitle':'北京孩思乐商业有限公司哈尔滨第二分公司'})">中国招商银行</a>-->
+                                                    <!--</li>-->
+                                                <!--</ul>-->
+                                            <!--</li>-->
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">大连第四分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'北京孩思乐商业有限公司大连第四分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">太原第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'北京孩思乐商业有限公司太原第一分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">沈阳第二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司沈阳第二分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">沈阳第三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'北京孩思乐商业有限公司沈阳第三分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">天津第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司天津第一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">天津河东区分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司天津河东区分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">天津河西区分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司天津天津河西区分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">天津河西区第二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司天津天津河西区第二分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">天津市和平区分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司天津市和平区分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">天津南开区分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司天津南开区分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">天津南开区第二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司天津南开区第二分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">内蒙古分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司内蒙古分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">包头分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="ChinaBank({'companytitle':'北京孩思乐商业有限公司包头分公司'})">中国银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">大连第三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司大连第三分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">大连第四分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司大连第四分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">青岛第二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MinShengBank({'companytitle':'北京孩思乐商业有限公司青岛第二分公司'})">中国民生银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">青岛第三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="ChinaBank({'companytitle':'北京孩思乐商业有限公司青岛第三分公司'})">中国银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">青岛第四分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="ChinaBank({'companytitle':'北京孩思乐商业有限公司青岛第四分公司'})">中国银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">青岛第六分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司青岛第六分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <!--<li><a class="has-arrow " href="#" aria-expanded="false">-->
+                                              <!--<span-->
+                                                      <!--class="hide-menu">济南第一分公司</span></a>-->
+                                                <!--<ul aria-expanded="false" class="collapse">-->
+                                                    <!--<li>-->
+                                                        <!--<a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司济南第一分公司'})">济南第一分公司</a>-->
+                                                    <!--</li>-->
+                                                <!--</ul>-->
+                                            <!--</li>-->
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">济南第二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="AgriculturalBank({'companytitle':'北京孩思乐商业有限公司济南第二分公司'})">济南第二分公司</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">济南第三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司济南第三分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <!--<li><a class="has-arrow " href="#" aria-expanded="false">-->
+                                              <!--<span-->
+                                                      <!--class="hide-menu">济南第四分公司</span></a>-->
+                                                <!--<ul aria-expanded="false" class="collapse">-->
+                                                    <!--<li>-->
+                                                        <!--<a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司济南第四分公司'})">中国建设银行</a>-->
+                                                    <!--</li>-->
+                                                <!--</ul>-->
+                                            <!--</li>-->
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">济南第五分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="ChinaBank({'companytitle':'北京孩思乐商业有限公司济南第五分公司'})">中国银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">济南第七分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司济南第七分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">三河市燕郊分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司三河市燕郊分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">唐山爱情海购物分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="AgriculturalBank({'companytitle':'北京孩思乐商业有限公司唐山爱情海购物分公司'})">中国农业银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">赤峰分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司赤峰分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">潍坊分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司潍坊分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">潍坊分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司潍坊分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">德州分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司德州分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">德州分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'北京孩思乐商业有限公司德州分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">东营第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'北京孩思乐商业有限公司东营第一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow " href="#" aria-expanded="false"><i
+                                        class="mdi mdi-temperature-kelvin"></i><span
+                                        class="hide-menu">中区</span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li>
+                                        <a class="has-arrow " href="#" aria-expanded="false"><i
+                                                class="mdi mdi-temperature-kelvin"></i><span
+                                                class="hide-menu">上海孩思乐</span></a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">商贸有限公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'上海孩思乐商贸有限公司'})">中国建设银行</a>
+                                                    </li>
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">温州第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'上海孩思乐商贸有限公司温州第一分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">长沙分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'上海孩思乐商贸有限长沙分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">长沙第三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="ChinaBank({'companytitle':'上海孩思乐商贸有限长沙第三分公司'})">中国银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">宁波分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'上海孩思乐商贸有限宁波分公司'})">中国建设银行</a>
+                                                    </li>
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'上海孩思乐商贸有限宁波分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">无锡一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'上海孩思乐商贸有限无锡一分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">无锡二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'上海孩思乐商贸有限无锡一分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">苏州第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'上海孩思乐商贸有限公司苏州第一分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">苏州第二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'上海孩思乐商贸有限公司苏州第二分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">苏州第三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司苏州第三分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">苏州第四分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'上海孩思乐商贸有限公司苏州第四分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">南通一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'上海孩思乐商贸有限公司南通一分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">南通二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司南通二分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">武汉一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司武汉一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">武汉二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司武汉二分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">武汉三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'上海孩思乐商贸有限公司武汉三分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">武汉四分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'上海孩思乐商贸有限公司武汉四分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">武汉五分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'上海孩思乐商贸有限公司武汉五分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">武汉七分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司武汉七分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">武汉八分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'上海孩思乐商贸有限公司武汉八分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">武汉九分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'上海孩思乐商贸有限公司武汉九分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">武汉十分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="MerchantsBank({'companytitle':'上海孩思乐商贸有限公司武汉十分公司'})">中国招商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">杭州三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司杭州三分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">杭州四分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司杭州四分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">杭州五分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司杭州五分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">杭州六分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司杭州六分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">杭州七分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司杭州七分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">杭州八分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司杭州八分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">杭州九分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司杭州九分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">杭州十分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司杭州十分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">南京第三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司南京第三分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">杭州一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'上海孩思乐商贸有限公司杭州一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="has-arrow " href="#" aria-expanded="false"><i
+                                                class="mdi mdi-temperature-kelvin"></i><span
+                                                class="hide-menu">广州智乐</span></a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">上海分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州智乐商业有限公司上海分公司'})">中国工商银行</a>
+                                                    </li>
+                                                    <li>
+                                                        <a ui-sref="ChinaBank({'companytitle':'广州智乐商业有限公司上海分公司'})">中国银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">上海浦东一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州智乐商业有限公司上海浦东一分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow " href="#" aria-expanded="false"><i
+                                        class="mdi mdi-temperature-kelvin"></i><span
+                                        class="hide-menu">南区</span></a>
+                                <ul aria-expanded="false" class="collapse">
+
+                                    <li>
+                                        <a class="has-arrow " href="#" aria-expanded="false"><i
+                                                class="mdi mdi-temperature-kelvin"></i><span
+                                                class="hide-menu">广州孩思乐</span></a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">商贸有限公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'广州孩思乐商贸有限公司'})">中国建设银行</a>
+                                                    </li>
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">佛山禅城第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司佛山禅城第一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">厦门第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司厦门第一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">厦门第二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司厦门第二分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">中山第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司中山第一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">南宁第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司南宁第一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">西安第三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司西安第三分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">西安第四分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司西安第四分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">珠海第二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司珠海第二分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">柳州第二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司柳州第二分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">昆明第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司昆明第一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">中山第二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司中山第二分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">中山第三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司中山第三分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">西安第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司西安第一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">珠海第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司珠海第一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">柳州第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司柳州第一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="has-arrow " href="#" aria-expanded="false"><i
+                                                class="mdi mdi-temperature-kelvin"></i><span
+                                                class="hide-menu">深圳孩思乐</span></a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">商贸有限公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'深圳孩思乐商贸有限公司'})">中国建设银行</a>
+                                                    </li>
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'深圳孩思乐商贸有限公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">第一分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司第一分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">昆明滇池路分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司昆明滇池路分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">昆明第二分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司昆明第二分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">昆明第三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司昆明第三分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">昆明第四分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司昆明第四分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">昆明第五分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司昆明第五分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">惠州华贸分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司惠州华贸分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">厦门思明南路分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司厦门思明南路分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">西安第七分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司西安第七分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">西安太白路分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司西安太白路分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">西安第三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司西安第三分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">西安第四分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司西安第四分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">西安第六分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="IndustrialAndCommercialBank({'companytitle':'广州孩思乐商贸有限公司西安第六分公司'})">中国工商银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="has-arrow " href="#" aria-expanded="false"><i
+                                                class="mdi mdi-temperature-kelvin"></i><span
+                                                class="hide-menu">成都孩思乐</span></a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">商贸有限公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'成都孩思乐商贸有限公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">成都双庆路分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'成都孩思乐商贸有限公司成都双庆路分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">盛和一路分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'成都孩思乐商贸有限公司盛和一路分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">第六分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'成都孩思乐商贸有限公司第六分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">第八分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'成都孩思乐商贸有限公司第八分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">第九分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'成都孩思乐商贸有限公司第九分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">重庆第七分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'成都孩思乐商贸有限公司重庆第七分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">重庆大融城分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'成都孩思乐商贸有限公司重庆大融城分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">重庆第三分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'成都孩思乐商贸有限公司重庆第三分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">重庆第四分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'成都孩思乐商贸有限公司重庆第四分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">重庆第五分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'成都孩思乐商贸有限公司重庆第五分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="has-arrow " href="#" aria-expanded="false">
+                                              <span
+                                                      class="hide-menu">重庆第六分公司</span></a>
+                                                <ul aria-expanded="false" class="collapse">
+                                                    <li>
+                                                        <a ui-sref="EconomicAndConstructionBank({'companytitle':'成都孩思乐商贸有限公司重庆第六分公司'})">中国建设银行</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-animation"></i><span
+                                class="hide-menu">收付款规则管理</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li>
+                                <a class="has-arrow " href="#" aria-expanded="false">
+                                    收款规则</a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li ui-sref="incomeMapping({region:'北区'})">
+                                        <a href="#">
+                                            北区</a>
+                                    </li>
+                                    <li ui-sref="incomeMapping({region:'中区'})">
+                                        <a href="#">
+                                            中区</a>
+                                    </li>
+                                    <li ui-sref="incomeMapping({region:'南区'})">
+                                        <a href="#">
+                                            南区</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow " href="#" aria-expanded="false">付款规则</a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li ui-sref="chargeMapping({region:'北区'})">
+                                        <a href="#">
+                                            北区</a>
+                                    </li>
+                                    <li ui-sref="chargeMapping({region:'中区'})">
+                                        <a href="#">
+                                            中区</a>
+                                    </li>
+                                    <li ui-sref="chargeMapping({region:'南区'})">
+                                        <a href="#">
+                                            南区</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li ui-sref="BankBalanceSearch"> <a href="#"><i class="fa fa-dollar"></i><span
+                            class="hide-menu">余额查询</span></a></li>
+                    <li>
+                        <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-read"></i><span
+                                class="hide-menu">权限管理</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li ui-sref="memberManagement"><a href="#">成员管理</a></li>
+                            <li ui-sref="permissionManagement"><a href="#">权限分配</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+    </aside>
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+</div>
+</html>

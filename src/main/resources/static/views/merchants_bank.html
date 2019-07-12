@@ -1,0 +1,88 @@
+<div  ng-controller="MerchantsBankController">
+    <h4>{{$root.companyName}}</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="width:  67%;">
+                <div class="card-body" style="width:100%;">
+                    <div class="starttime" style="text-align: center;display: inline-block;margin-right: 15px;margin-top: 39px">
+                        <span><label class="h4" style="color:#B0BEC5" >请选择起始时间:</label></span>
+                        <span>
+                                          <wui-date
+                                                  format="yyyy-mm-dd"
+                                                  placeholder="起始时间"
+                                                  id="startTime"
+                                                  btns="{'ok':'确定','now':'此刻'}"
+                                                  ng-model="startTime"
+                                          >
+                                    </wui-date>
+                                    </span>
+
+                    </div>
+                    <div class=endtime" style="text-align: center;display: inline-block;margin-right: 30px;margin-top: 39px">
+                        <span><label class="h4" style="color:#B0BEC5" >请选择截止时间:</label></span>
+                        <span>
+                                          <wui-date
+
+                                                  format="yyyy-mm-dd"
+                                                  placeholder="截止时间"
+                                                  id="endTime"
+                                                  btns="{'ok':'确定','now':'此刻'}"
+                                                  ng-model="endTime"
+                                          >
+                                    </wui-date>
+                                    </span>
+                    </div>
+                    <div class="form-group" style="display:inline-block;text-align: center;margin-right: 10px">
+                        <h5 style="color: red" ng-if="errormessage!=''">{{errormessage}}</h5>
+                    </div>
+                    <div style="width: 263px;height:12px;display: inline-block" ng-if="errormessage==''"></div>
+                    <div class="form-group" style="display:inline-block;text-align:center">
+                        <input type="button" class="btn  btn-success btn-lg" value="查询" ng-click="getByStartAndEnd()" style="padding: 19px 33px;line-height:7px">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="width: 1680px">
+                <div class="card-body">
+                    <h4 class="card-title">中国招商银行</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th style="width: 10%">交易日</th>
+                                <th style="width: 10%">交易时间</th>
+                                <th style="width: 10%">起息日</th>
+                                <th style="width: 10%">交易类型</th>
+                                <th style="width: 10%">借方金额</th>
+                                <th style="width: 10%">贷方金额</th>
+                                <th style="width: 10%">余额</th>
+                                <th style="width: 10%">摘要</th>
+                                <th style="width: 10%">流水号</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="i in merchantsbankdata">
+                                <td>{{i.transactionDay}}</td>
+                                <td>{{i.transactionHour}}</td>
+                                <td>{{i.interestDate}}</td>
+                                <td>{{i.transactionType}}</td>
+                                <td>{{i.debitAmount}}</td>
+                                <td>{{i.creditAmount}}</td>
+                                <td>{{i.balance}}</td>
+                                <td>{{i.bankAbstract}}</td>
+                                <td>{{i.serialNumber}}</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
