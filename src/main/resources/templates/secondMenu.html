@@ -1,0 +1,160 @@
+<div class="row" ng-controller="SecondMenuController">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title" style="display: inline-block">内控流程目录-二级流程</h4>
+                <div class="button-group" style="display: inline-block;margin-left: 1100px">
+                    <button data-toggle="modal" data-target="#createSecondModal" type="button" class="btn btn-secondary btn-circle btn-xl"><i
+                            class="fa  fa-plus"></i> </button>
+                    <button type="button" class="btn btn-secondary btn-circle btn-xl"><i class="fa  fa-pencil"></i> </button>
+                    <button type="button" class="btn btn-secondary btn-circle btn-xl"><i class="fa fa-times"></i> </button>
+                </div>
+                <h6 class="card-subtitle">数据可导出为CSV, Excel, PDF</h6>
+                <div class="table-responsive m-t-40">
+                    <div id="example23_wrapper" class="dataTables_wrapper">
+                        <div class="dt-buttons"><a class="dt-button buttons-copy buttons-html5" tabindex="0"
+                                                   aria-controls="example23" href="#"><span>复制</span></a><a
+                                class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="example23"
+                                href="#"><span>CSV</span></a><a class="dt-button buttons-excel buttons-html5"
+                                                                tabindex="0" aria-controls="example23" href="#"><span>Excel</span></a>
+                        </div>
+                        <div id="example23_filter" class="dataTables_filter"><label>查询:<input type="search" class=""
+                                                                                              placeholder=""
+                                                                                              aria-controls="example23"></label>
+                        </div>
+                        <table id="example23"
+                               class="display nowrap table table-hover table-striped table-bordered dataTable"
+                               cellspacing="0" width="100%" role="grid" aria-describedby="example23_info"
+                               style="width: 100%;">
+                            <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="example23" rowspan="1" colspan="1"
+                                    aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                                    style="width: 181px;">二级流程名称
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1"
+                                    aria-label="Position: activate to sort column ascending" style="width: 269px;">
+                                    流程编号
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1"
+                                    aria-label="Office: activate to sort column ascending" style="width: 137px;">一级流程名称
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1"
+                                    aria-label="Start date: activate to sort column ascending" style="width: 123px;">
+                                    审核状态
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1"
+                                    aria-label="Salary: activate to sort column ascending" style="width: 98px;">创建时间
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1"
+                                    aria-label="Age: activate to sort column ascending" style="width: 65px;">控制矩阵
+                                </th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th rowspan="1" colspan="1">二级流程名称</th>
+                                <th rowspan="1" colspan="1">流程编号</th>
+                                <th rowspan="1" colspan="1">一级流程名称</th>
+                                <th rowspan="1" colspan="1">审核状态</th>
+                                <th rowspan="1" colspan="1">创建时间</th>
+                                <th rowspan="1" colspan="1">控制矩阵</th>
+
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">工程项目设计</td>
+                                <td>DRM12.01</td>
+                                <td>工程项目管理</td>
+                                <td>已发布</td>
+                                <td>2018-07-01</td>
+                                <td><span><i class="mdi mdi-earth" style="cursor: pointer"></i></span></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">工程项目招标</td>
+                                <td>DRM12.02</td>
+                                <td>工程项目管理</td>
+                                <td>已发布</td>
+                                <td>2018-07-01</td>
+                                <td><span><i class="mdi mdi-earth" style="cursor: pointer"></i></span></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">工程项目招标</td>
+                                <td>DRM12.02</td>
+                                <td>工程项目管理</td>
+                                <td>已发布</td>
+                                <td>2018-07-01</td>
+                                <td><span><i class="mdi mdi-earth" style="cursor: pointer"></i></span></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">工程项目建设</td>
+                                <td>DRM12.03</td>
+                                <td>工程项目管理</td>
+                                <td>已发布</td>
+                                <td>2018-07-01</td>
+                                <td><span><i class="mdi mdi-earth" style="cursor: pointer"></i></span></td>
+                            </tr>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">工程物资管理</td>
+                                <td>DRM12.04</td>
+                                <td>工程项目管理</td>
+                                <td>已发布</td>
+                                <td>2018-07-01</td>
+                                <td><span><i class="mdi mdi-earth" style="cursor: pointer"></i></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="dataTables_info" id="example23_info" role="status" aria-live="polite">Showing 1 to
+                            10 of 57 entries
+                        </div>
+                        <div class="dataTables_paginate paging_simple_numbers" id="example23_paginate"><a
+                                class="paginate_button previous disabled" aria-controls="example23" data-dt-idx="0"
+                                tabindex="0" id="example23_previous">Previous</a><span><a
+                                class="paginate_button current" aria-controls="example23" data-dt-idx="1"
+                                tabindex="0">1</a><a class="paginate_button " aria-controls="example23" data-dt-idx="2"
+                                                     tabindex="0">2</a><a class="paginate_button "
+                                                                          aria-controls="example23" data-dt-idx="3"
+                                                                          tabindex="0">3</a><a class="paginate_button "
+                                                                                               aria-controls="example23"
+                                                                                               data-dt-idx="4"
+                                                                                               tabindex="0">4</a><a
+                                class="paginate_button " aria-controls="example23" data-dt-idx="5" tabindex="0">5</a><a
+                                class="paginate_button " aria-controls="example23" data-dt-idx="6"
+                                tabindex="0">6</a></span><a class="paginate_button next" aria-controls="example23"
+                                                            data-dt-idx="7" tabindex="0" id="example23_next">Next</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="createSecondModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel1">创建二级流程</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">二级流程名称:</label>
+                            <input type="text" class="form-control" id="recipient-name1">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">二级流程编号:</label>
+                            <textarea class="form-control" id="message-text1"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

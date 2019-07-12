@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>kisland</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <!-- Footable CSS -->
+    <link href="assets/plugins/footable/css/footable.core.css" rel="stylesheet">
+    <link href="assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <!--alerts CSS -->
+    <link href="/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+    <!--<link href="css/colors/megna.css" id="theme" rel="stylesheet">-->
+    <link href="css/colors/megna-dark.css" id="theme" rel="stylesheet">
+    <!--calendar CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/calendarcss/wui.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="../https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="../https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="fix-header card-no-border" ng-app="myApp" ng-controller="AppCtrl">
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div th:include="topbar::topbar"></div>
+    <!-- ============================================================== -->
+    <!-- End Topbar header -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <div th:include="sidebar::sidebar"></div>
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="row page-titles">
+                <div class="col-md-5 col-8 align-self-center">
+                    <h3 class="text-themecolor m-b-0 m-t-0" style="cursor: pointer" ui-sref="CapitalDailyTable">首页</h3>
+                </div>
+                <div class="col-md-7 col-4 align-self-center">
+                    <div class="d-flex m-t-10 justify-content-end">
+                        <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                            <div class="chart-text m-r-10">
+                                <h6 class="m-b-0">
+                                    <small>当月访问量</small>
+                                </h6>
+                                <h4 class="m-t-0 text-info">32</h4></div>
+                            <div class="spark-chart">
+                                <div id="monthchart"></div>
+                            </div>
+                        </div>
+                        <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                            <div class="chart-text m-r-10">
+                                <h6 class="m-b-0">
+                                    <small>上月访问量</small>
+                                </h6>
+                                <h4 class="m-t-0 text-primary">35</h4></div>
+                            <div class="spark-chart">
+                                <div id="lastmonthchart"></div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10">
+                                <i class="ti-settings text-white"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-12">
+                    <div ui-view="view-CapitalDailyTable">
+                        <!--资金日报表-->
+                    </div>
+                    <div ui-view="view-ChinaBank">
+                        <!--中国银行-->
+                    </div>
+                    <div ui-view="view-AgriculturalBank">
+                        <!--中国农业银行-->
+                    </div>
+                    <div ui-view="view-IndustrialAndCommercialBank">
+                        <!--中国工商银行-->
+                    </div>
+                    <div ui-view="view-EconomicAndConstructionBank">
+                        <!--中国建设银行-->
+                    </div>
+                    <div ui-view="view-MinShengBank">
+                        <!--中国民生银行-->
+                    </div>
+                    <div ui-view="view-MerchantsBank">
+                        <!--中国招商银行-->
+                    </div>
+                    <div ui-view="view-incomeMapping">
+                        <!--收款mapping-->
+                    </div>
+                    <div ui-view="view-chargeMapping">
+                        <!--付款mapping-->
+                    </div>
+                    <div ui-view="view-BankBalanceSearch">
+                        <!--余额查询相关内容-->
+                    </div>
+                    <div ui-view="view-memberManagement">
+                        <!--成员管理相关内容-->
+                    </div>
+                    <div ui-view="view-permissionManagement">
+                        <!--权限管理相关内容-->
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer">
+            © 2019 KisLand System by Satense Song
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page wrapper  -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<script src="assets/plugins/jquery/jquery.min.js"></script>
+
+<!--引入angularjs-->
+<script src="assets/plugins/angular-1.6.2/angular.js"></script>
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Bootstrap tether Core JavaScript -->
+<script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="js/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<script src="assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+<!--Custom JavaScript -->
+<script src="js/custom.min.js"></script>
+<!-- ============================================================== -->
+<!-- Style switcher -->
+<!-- ============================================================== -->
+<script src="assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
+
+<!--引入angular-ui-router.js-->
+<script src="assets/plugins/angular-ui-router/release/angular-ui-router.js"></script>
+<!-- ============================================================== -->
+<!--引入app.js-->
+<script src="route/app.js"></script>
+<!-- ============================================================== -->
+<!-- Editable -->
+<script src="assets/plugins/jquery-datatables-editable/jquery.dataTables.js"></script>
+<script src="assets/plugins/datatables/dataTables.bootstrap.js"></script>
+<script src="assets/plugins/tiny-editable/mindmup-editabletable.js"></script>
+<script src="assets/plugins/tiny-editable/numeric-input-example.js"></script>
+<script>
+    $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+    $('#editable-datatable').editableTableWidget().numericInputExample().find('td:first').focus();
+    $(document).ready(function() {
+        $('#editable-datatable').DataTable();
+    });
+</script>
+<!-- ============================================================== -->
+<!-- Footable -->
+<script src="assets/plugins/footable/js/footable.all.min.js"></script>
+<script src="assets/plugins/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
+<!--FooTable init-->
+<script src="js/footable-init.js"></script>
+<!--Calendar -->
+<script type="text/javascript" src="/js/calendarjs/wui-date.js" charset="utf-8"></script>
+<!-- Sweet-Alert  -->
+<script src="/assets/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
+</body>
+</html>
