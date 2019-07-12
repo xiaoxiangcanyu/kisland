@@ -61,7 +61,7 @@
                             <tr>
                                 <th style="width: 10%">交易时间</th>
                                 <th style="width: 10%">银行名称</th>
-                                <th style="width: 10%">银行账户</th>
+                                <th style="width: 22%">银行账户</th>
                                 <th style="width: 10%">银行账户号</th>
                                 <th style="width: 10%">账户余额</th>
                             </tr>
@@ -76,6 +76,15 @@
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-md-8" style="margin-left: 10px">
+                            <pagination data="data" option="option"
+                                        mappinglist ="bankbalancedata"></pagination>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <h5>{{'共计: '+data.length+' 条 数据'}}</h5>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -938,18 +938,50 @@ app.controller('memberManagementController', function ($scope) {
 app.controller('permissionManagementController', function ($scope) {
 
 });
-app.controller('BankBalanceSearchController', function ($scope, SearchBankBalance,$filter) {
+app.controller('BankBalanceSearchController', function ($scope, SearchBankBalance,$filter,PageReady) {
+    $scope.data = [];
+    $scope.all = 0;
+    $scope.current = 0;
+    $scope.count = 15;
+    $scope.option = {
+        curr: $scope.current,
+        all: $scope.all,
+        count: $scope.count
+    };
     $scope.timeString = $filter('date')(new Date(), 'yyyy-MM-dd');
     $scope.startTime = '2019-06-01';
     $scope.endTime = $scope.timeString;
     $scope.accountTitle = '所有公司';
+    //初始化分页
     SearchBankBalance.getList($scope.startTime, $scope.endTime, $scope.accountTitle).then(function (result) {
-        $scope.bankbalancedata =result;
+        $scope.data = result;
+        PageReady.getPageparam($scope.data, 15, function (totalPages) {
+            var currentPageData;
+            $scope.all = totalPages;
+            $scope.option = {
+                curr: $scope.current,
+                all: $scope.all,
+                count: $scope.count
+            };
+            currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+            return $scope.bankbalancedata = currentPageData;
+        });
     });
+    //查询分页
     $scope.getByStartAndEndAndTitle = function () {
         SearchBankBalance.getList($scope.startTime, $scope.endTime, $scope.accountTitle).then(function (result) {
-            console.log(result);
-            $scope.bankbalancedata =result;
+            $scope.data = result;
+            PageReady.getPageparam($scope.data, 15, function (totalPages) {
+                var currentPageData;
+                $scope.all = totalPages;
+                $scope.option = {
+                    curr: $scope.current,
+                    all: $scope.all,
+                    count: $scope.count
+                };
+                currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+                return $scope.bankbalancedata = currentPageData;
+            });
         });
     }
 
