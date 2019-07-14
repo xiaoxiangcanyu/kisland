@@ -84,6 +84,17 @@ app.config(['$stateProvider', function ($stateProvider) {
                 }
             }
         )
+        //星展银行
+        .state('DbsBank', {
+            url: '/DbsBank',
+            controller: 'DbsBankController',
+            params: {'companytitle': ""},
+            views: {
+                "view-DbsBank": {
+                    templateUrl: 'views/dbs_bank.html'
+                }
+            }
+        })
         //成员管理
         .state('memberManagement', {
             url: '/memberManagement',
@@ -339,7 +350,7 @@ app.directive('pagination', function ($rootScope) {
     return {
         restrict: 'AE',
         replace: true,
-        template: '<ul class="pagination" style="height: 20px">' + '<li style="margin-right: 10px" ng-click="pageClick(p)" ng-repeat="p in page" class="{{option.curr==p?\'active\':\'\'}}">' + '<a href="javascript:;" rel="external nofollow" >{{p}}</a>' + '</li>' + '</ul>',
+        template: '<ul class="pagination" style="height: 20px">' + '<li style="margin-right: 15px" ng-click="pageClick(p)" ng-repeat="p in page" class="{{option.curr==p?\'active\':\'\'}}">' + '<a href="javascript:;" rel="external nofollow" >{{p}}</a>' + '</li>' + '</ul>',
         scope: {
             data: '=',
             option: '=',
@@ -590,21 +601,56 @@ app.controller('AppCtrl', function ($scope, $state) {
     $state.go('CapitalDailyTable');
 });
 //中国银行的控制器
-app.controller('ChinaBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService) {
+app.controller('ChinaBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService,PageReady) {
+    $scope.data = [];
+    $scope.all = 0;
+    $scope.current = 0;
+    $scope.count = 15;
+    $scope.option = {
+        curr: $scope.current,
+        all: $scope.all,
+        count: $scope.count
+    };
     $rootScope.companyName = $stateParams.companytitle;
     $scope.today = new Date();
     $scope.timeString = $filter('date')($scope.today, 'yyyy-MM-dd');
+    $scope.startTime = "2019-06-01";
+    $scope.endTime = $scope.timeString;
+    $scope.startTime = "2019-06-01";
+    $scope.endTime = $scope.timeString;
     //=======================================================初始化====================================================================================
-    AjaxGetListByCompanyTitleAndDateService.GetList('findChinaBankByAccountTitleAndDate', $stateParams.companytitle, '2019-05-01', $scope.timeString, 'GET').then(function (result) {
-        $scope.chinabankdata = result;
-
+    AjaxGetListByCompanyTitleAndDateService.GetList('findChinaBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.timeString, 'GET').then(function (result) {
+        $scope.data = result;
+        console.log(result)
+        PageReady.getPageparam($scope.data, 15, function (totalPages) {
+            var currentPageData;
+            $scope.all = totalPages;
+            $scope.option = {
+                curr: $scope.current,
+                all: $scope.all,
+                count: $scope.count
+            };
+            currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+            return $scope.chinabankdata = currentPageData;
+        });
     });
     //=======================================================初始化====================================================================================
 
     //=======================================================时间段查询====================================================================================
     $scope.getByStartAndEnd = function () {
         AjaxGetListByCompanyTitleAndDateService.GetList('findChinaBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.endTime, 'GET').then(function (result) {
-            $scope.chinabankdata = result;
+            $scope.data = result;
+            PageReady.getPageparam($scope.data, 15, function (totalPages) {
+                var currentPageData;
+                $scope.all = totalPages;
+                $scope.option = {
+                    curr: $scope.current,
+                    all: $scope.all,
+                    count: $scope.count
+                };
+                currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+                return $scope.chinabankdata = currentPageData;
+            });
         });
     };
     //=======================================================时间段查询====================================================================================
@@ -612,42 +658,106 @@ app.controller('ChinaBankController', function ($scope, $rootScope, $http, $stat
 
 });
 //中国农业银行的控制器
-app.controller('AgriculturalBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService) {
+app.controller('AgriculturalBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService,PageReady) {
+    $scope.data = [];
+    $scope.all = 0;
+    $scope.current = 0;
+    $scope.count = 15;
+    $scope.option = {
+        curr: $scope.current,
+        all: $scope.all,
+        count: $scope.count
+    };
     $scope.today = new Date();
     $scope.timeString = $filter('date')($scope.today, 'yyyy-MM-dd');
     $rootScope.companyName = $stateParams.companytitle;
+    $scope.startTime = "2019-06-01";
+    $scope.endTime = $scope.timeString;
     //=======================================================初始化====================================================================================
-    AjaxGetListByCompanyTitleAndDateService.GetList('findAgriculturalBankByAccountTitleAndDate', $stateParams.companytitle, '2019-05-01', $scope.timeString, 'GET').then(function (result) {
-        $scope.agriculturalbankdata = result;
-
+    AjaxGetListByCompanyTitleAndDateService.GetList('findAgriculturalBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.timeString, 'GET').then(function (result) {
+        $scope.data = result;
+        PageReady.getPageparam($scope.data, 15, function (totalPages) {
+            var currentPageData;
+            $scope.all = totalPages;
+            $scope.option = {
+                curr: $scope.current,
+                all: $scope.all,
+                count: $scope.count
+            };
+            currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+            return $scope.agriculturalbankdata = currentPageData;
+        });
     });
     //=======================================================初始化====================================================================================
 
     //=======================================================时间段查询====================================================================================
     $scope.getByStartAndEnd = function () {
         AjaxGetListByCompanyTitleAndDateService.GetList('findAgriculturalBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.endTime, 'GET').then(function (result) {
-            $scope.agriculturalbankdata = result;
+            $scope.data = result;
+            PageReady.getPageparam($scope.data, 15, function (totalPages) {
+                var currentPageData;
+                $scope.all = totalPages;
+                $scope.option = {
+                    curr: $scope.current,
+                    all: $scope.all,
+                    count: $scope.count
+                };
+                currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+                return $scope.agriculturalbankdata = currentPageData;
+            });
         });
     };
     //=======================================================时间段查询====================================================================================
 
 });
 //中国工商银行的控制器
-app.controller('IndustrialAndCommercialBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService) {
+app.controller('IndustrialAndCommercialBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService,PageReady) {
+    $scope.data = [];
+    $scope.all = 0;
+    $scope.current = 0;
+    $scope.count = 15;
+    $scope.option = {
+        curr: $scope.current,
+        all: $scope.all,
+        count: $scope.count
+    };
     $scope.today = new Date();
     $scope.timeString = $filter('date')($scope.today, 'yyyy-MM-dd');
     $rootScope.companyName = $stateParams.companytitle;
+    $scope.startTime = "2019-06-01";
+    $scope.endTime = $scope.timeString;
     //=======================================================初始化====================================================================================
-    AjaxGetListByCompanyTitleAndDateService.GetList('findIndustrialAndCommercialBankByAccountTitleAndDate', $stateParams.companytitle, '2019-05-01', $scope.timeString, 'GET').then(function (result) {
-        $scope.industrialandcommercialbankdata = result;
-
+    AjaxGetListByCompanyTitleAndDateService.GetList('findIndustrialAndCommercialBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.timeString, 'GET').then(function (result) {
+        $scope.data = result;
+        PageReady.getPageparam($scope.data, 15, function (totalPages) {
+            var currentPageData;
+            $scope.all = totalPages;
+            $scope.option = {
+                curr: $scope.current,
+                all: $scope.all,
+                count: $scope.count
+            };
+            currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+            return $scope.industrialandcommercialbankdata = currentPageData;
+        });
     });
     //=======================================================初始化====================================================================================
 
     //=======================================================时间段查询====================================================================================
     $scope.getByStartAndEnd = function () {
         AjaxGetListByCompanyTitleAndDateService.GetList('findIndustrialAndCommercialBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.endTime, 'GET').then(function (result) {
-            $scope.industrialandcommercialbankdata = result;
+            $scope.data = result;
+            PageReady.getPageparam($scope.data, 15, function (totalPages) {
+                var currentPageData;
+                $scope.all = totalPages;
+                $scope.option = {
+                    curr: $scope.current,
+                    all: $scope.all,
+                    count: $scope.count
+                };
+                currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+                return $scope.industrialandcommercialbankdata = currentPageData;
+            });
         });
     };
     //=======================================================时间段查询====================================================================================
@@ -655,14 +765,35 @@ app.controller('IndustrialAndCommercialBankController', function ($scope, $rootS
 
 });
 //中国建设银行的控制器
-app.controller('EconomicAndConstructionBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService) {
+app.controller('EconomicAndConstructionBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService,PageReady) {
+    $scope.data = [];
+    $scope.all = 0;
+    $scope.current = 0;
+    $scope.count = 15;
+    $scope.option = {
+        curr: $scope.current,
+        all: $scope.all,
+        count: $scope.count
+    };
     $scope.today = new Date();
     $scope.timeString = $filter('date')($scope.today, 'yyyy-MM-dd');
     $rootScope.companyName = $stateParams.companytitle;
+    $scope.startTime = "2019-06-01";
+    $scope.endTime = $scope.timeString;
     //=======================================================初始化====================================================================================
-    AjaxGetListByCompanyTitleAndDateService.GetList('findEconomicConstructionBankByAccountTitleAndDate', $stateParams.companytitle, '2019-05-01', $scope.timeString, 'GET').then(function (result) {
-        console.log(result);
-        $scope.economicandconstructionbank = result;
+    AjaxGetListByCompanyTitleAndDateService.GetList('findEconomicConstructionBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.timeString, 'GET').then(function (result) {
+        $scope.data = result;
+        PageReady.getPageparam($scope.data, 15, function (totalPages) {
+            var currentPageData;
+            $scope.all = totalPages;
+            $scope.option = {
+                curr: $scope.current,
+                all: $scope.all,
+                count: $scope.count
+            };
+            currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+            return $scope.economicandconstructionbank = currentPageData;
+        });
 
     });
     //=======================================================初始化====================================================================================
@@ -670,48 +801,175 @@ app.controller('EconomicAndConstructionBankController', function ($scope, $rootS
     //=======================================================时间段查询====================================================================================
     $scope.getByStartAndEnd = function () {
         AjaxGetListByCompanyTitleAndDateService.GetList('findEconomicConstructionBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.endTime, 'GET').then(function (result) {
-            console.log(result);
-            $scope.economicandconstructionbank = result;
+            $scope.data = result;
+            PageReady.getPageparam($scope.data, 15, function (totalPages) {
+                var currentPageData;
+                $scope.all = totalPages;
+                $scope.option = {
+                    curr: $scope.current,
+                    all: $scope.all,
+                    count: $scope.count
+                };
+                currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+                return $scope.economicandconstructionbank = currentPageData;
+            });
         });
     };
     //=======================================================时间段查询====================================================================================
 });
 //中国民生银行的控制器
-app.controller('MinShengBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService) {
+app.controller('MinShengBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService,PageReady) {
+    $scope.data = [];
+    $scope.all = 0;
+    $scope.current = 0;
+    $scope.count = 15;
+    $scope.option = {
+        curr: $scope.current,
+        all: $scope.all,
+        count: $scope.count
+    };
     $scope.today = new Date();
     $scope.timeString = $filter('date')($scope.today, 'yyyy-MM-dd');
     $rootScope.companyName = $stateParams.companytitle;
+    $scope.startTime = "2019-06-01";
+    $scope.endTime = $scope.timeString;
     //=======================================================初始化====================================================================================
-    AjaxGetListByCompanyTitleAndDateService.GetList('findMinshengBankByAccountTitleAndDate', $stateParams.companytitle, '2019-05-01', $scope.timeString, 'GET').then(function (result) {
-        $scope.minshengbankdataSize = result;
-
+    AjaxGetListByCompanyTitleAndDateService.GetList('findMinshengBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.timeString, 'GET').then(function (result) {
+        $scope.data = result;
+        PageReady.getPageparam($scope.data, 15, function (totalPages) {
+            var currentPageData;
+            $scope.all = totalPages;
+            $scope.option = {
+                curr: $scope.current,
+                all: $scope.all,
+                count: $scope.count
+            };
+            currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+            return $scope.minshengbankdata = currentPageData;
+        });
     });
     //=======================================================初始化====================================================================================
 
     //=======================================================时间段查询====================================================================================
     $scope.getByStartAndEnd = function () {
         AjaxGetListByCompanyTitleAndDateService.GetList('findMinshengBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.endTime, 'GET').then(function (result) {
-            $scope.minshengbankdataSize = result;
+            $scope.data = result;
+            PageReady.getPageparam($scope.data, 15, function (totalPages) {
+                var currentPageData;
+                $scope.all = totalPages;
+                $scope.option = {
+                    curr: $scope.current,
+                    all: $scope.all,
+                    count: $scope.count
+                };
+                currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+                return $scope.minshengbankdata = currentPageData;
+            });
         });
     };
     //=======================================================时间段查询====================================================================================
 });
 //中国招商银行的控制器
-app.controller('MerchantsBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService) {
+app.controller('MerchantsBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService, PageReady) {
+    $scope.data = [];
+    $scope.all = 0;
+    $scope.current = 0;
+    $scope.count = 15;
+    $scope.option = {
+        curr: $scope.current,
+        all: $scope.all,
+        count: $scope.count
+    };
     $scope.today = new Date();
     $scope.timeString = $filter('date')($scope.today, 'yyyy-MM-dd');
     $rootScope.companyName = $stateParams.companytitle;
+    $scope.startTime = "2019-06-01";
+    $scope.endTime = $scope.timeString;
     //=======================================================初始化====================================================================================
-    AjaxGetListByCompanyTitleAndDateService.GetList('findMerchantsBankByAccountTitleAndDate', $stateParams.companytitle, '2019-05-01', $scope.timeString, 'GET').then(function (result) {
-        $scope.merchantsbankdata = result;
-
+    AjaxGetListByCompanyTitleAndDateService.GetList('findMerchantsBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.timeString, 'GET').then(function (result) {
+        $scope.data = result;
+        PageReady.getPageparam($scope.data, 15, function (totalPages) {
+            var currentPageData;
+            $scope.all = totalPages;
+            $scope.option = {
+                curr: $scope.current,
+                all: $scope.all,
+                count: $scope.count
+            };
+            currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+            return $scope.merchantsbankdata = currentPageData;
+        });
     });
     //=======================================================初始化====================================================================================
 
     //=======================================================时间段查询====================================================================================
     $scope.getByStartAndEnd = function () {
         AjaxGetListByCompanyTitleAndDateService.GetList('findMerchantsBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.endTime, 'GET').then(function (result) {
-            $scope.merchantsbankdata = result;
+            $scope.data = result;
+            PageReady.getPageparam($scope.data, 15, function (totalPages) {
+                var currentPageData;
+                $scope.all = totalPages;
+                $scope.option = {
+                    curr: $scope.current,
+                    all: $scope.all,
+                    count: $scope.count
+                };
+                currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+                return $scope.merchantsbankdata = currentPageData;
+            });
+        });
+    };
+    //=======================================================时间段查询====================================================================================
+});
+//星展银行的控制器
+app.controller('DbsBankController', function ($scope, $rootScope, $http, $stateParams, $filter, AjaxGetListByCompanyTitleAndDateService, PageReady) {
+    $scope.data = [];
+    $scope.all = 0;
+    $scope.current = 0;
+    $scope.count = 15;
+    $scope.option = {
+        curr: $scope.current,
+        all: $scope.all,
+        count: $scope.count
+    };
+    $scope.today = new Date();
+    $scope.timeString = $filter('date')($scope.today, 'yyyy-MM-dd');
+    $rootScope.companyName = $stateParams.companytitle;
+    $scope.startTime = "2019-06-01";
+    $scope.endTime = $scope.timeString;
+    //=======================================================初始化分页查询====================================================================================
+    AjaxGetListByCompanyTitleAndDateService.GetList('findDbsBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.timeString, 'GET').then(function (result) {
+        $scope.data = result;
+        PageReady.getPageparam($scope.data, 15, function (totalPages) {
+            var currentPageData;
+            $scope.all = totalPages;
+            $scope.option = {
+                curr: $scope.current,
+                all: $scope.all,
+                count: $scope.count
+            };
+            currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+            return $scope.Dbsbankdata = currentPageData;
+        });
+
+    });
+    //=======================================================初始化====================================================================================
+
+    //=======================================================时间段分页查询====================================================================================
+    $scope.getByStartAndEnd = function () {
+        AjaxGetListByCompanyTitleAndDateService.GetList('findDbsBankByAccountTitleAndDate', $stateParams.companytitle, $scope.startTime, $scope.endTime, 'GET').then(function (result) {
+            $scope.data = result;
+            PageReady.getPageparam($scope.data, 15, function (totalPages) {
+                var currentPageData;
+                $scope.all = totalPages;
+                $scope.option = {
+                    curr: $scope.current,
+                    all: $scope.all,
+                    count: $scope.count
+                };
+                currentPageData = $scope.data.slice(0 + $scope.current * 15, 15 + $scope.current * 15);
+                return $scope.Dbsbankdata = currentPageData;
+            });
         });
     };
     //=======================================================时间段查询====================================================================================
@@ -793,7 +1051,7 @@ app.controller('IncomeMappingController', function ($scope, CommonAjax, AddAjax,
                 });
             }
         })
-    }
+    };
     //删除收款规则
     $scope.deleteIncomeMapping = function (id) {
         DeleteAjax.deleteIncomeMapping('deleteIncomeMapping', id).then(function (result) {
@@ -938,7 +1196,7 @@ app.controller('memberManagementController', function ($scope) {
 app.controller('permissionManagementController', function ($scope) {
 
 });
-app.controller('BankBalanceSearchController', function ($scope, SearchBankBalance,$filter,PageReady) {
+app.controller('BankBalanceSearchController', function ($scope, SearchBankBalance, $filter, PageReady) {
     $scope.data = [];
     $scope.all = 0;
     $scope.current = 0;
@@ -949,7 +1207,7 @@ app.controller('BankBalanceSearchController', function ($scope, SearchBankBalanc
         count: $scope.count
     };
     $scope.timeString = $filter('date')(new Date(), 'yyyy-MM-dd');
-    $scope.startTime = '2019-06-01';
+    $scope.startTime = $scope.startTime;
     $scope.endTime = $scope.timeString;
     $scope.accountTitle = '所有公司';
     //初始化分页
