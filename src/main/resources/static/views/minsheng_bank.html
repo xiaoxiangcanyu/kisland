@@ -46,41 +46,44 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="card" style="width: 1680px">
+            <div class="card dataTableCard" >
                 <div class="card-body">
                     <h4 class="card-title">中国民生银行</h4>
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered dataTable">
                             <thead>
                             <tr>
-                                <th style="width:10%">交易日期</th>
-                                <th style="width:10%">主机交易流水号</th>
-                                <th style="width:10%">借方发生额</th>
-                                <th style="width:10%">贷方发生额</th>
-                                <th style="width:10%">账户余额</th>
-                                <th style="width:10%">凭证号</th>
-                                <th style="width:10%">摘要</th>
-                                <th style="width:10%">对方账号</th>
-                                <th style="width:10%">对方账号名称</th>
-                                <th style="width:10%">对方开户行</th>
+                                <th >交易日期</th>
+                                <th >主机交易流水号</th>
+                                <th >借方发生额</th>
+                                <th >贷方发生额</th>
+                                <th >账户余额</th>
+                                <th >摘要</th>
+                                <th >对方开户行</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr ng-repeat="i in minshengbankdata">
-                                <td>{{i.transactionDate}}</td>
-                                <td>{{i.hostTransactionSerialNumber}}</td>
-                                <td>{{i.debitAmount}}</td>
-                                <td>{{i.creditAmount}}</td>
-                                <td>{{i.accountBalance}}</td>
-                                <td>{{i.documentNumber}}</td>
-                                <td>{{i.summary}}</td>
-                                <td>{{i.otherAccounts}}</td>
-                                <td>{{i.accountName}}</td>
-                                <td>{{i.bankAccount}}</td>
+                                <td title="{{i.transactionDate}}">{{i.transactionDate}}</td>
+                                <td title="{{i.hostTransactionSerialNumber}}">{{i.hostTransactionSerialNumber}}</td>
+                                <td title="{{i.debitAmount}}">{{i.debitAmount}}</td>
+                                <td title="{{i.creditAmount}}">{{i.creditAmount}}</td>
+                                <td title="{{i.accountBalance}}">{{i.accountBalance}}</td>
+                                <td title="{{i.summary}}">{{i.summary}}</td>
+                                <td title="{{i.bankAccount}}">{{i.bankAccount}}</td>
                             </tr>
 
                             </tbody>
                         </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-md-8" style="margin-left: 10px">
+                            <pagination data="data" option="option"
+                                        mappinglist ="minshengbankdata"></pagination>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <h5>{{'共计: '+data.length+' 条 数据'}}</h5>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,12 +1,13 @@
-<div  ng-controller="EconomicAndConstructionBankController">
+<div ng-controller="EconomicAndConstructionBankController">
     <h4>{{$root.companyName}}</h4>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card" style="width:  67%;">
-                    <div class="card-body" style="width:100%;">
-                        <div class="starttime" style="text-align: center;display: inline-block;margin-right: 15px;margin-top: 39px">
-                            <span><label class="h4" style="color:#B0BEC5" >请选择起始时间:</label></span>
-                            <span>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="width:  67%;">
+                <div class="card-body" style="width:100%;">
+                    <div class="starttime"
+                         style="text-align: center;display: inline-block;margin-right: 15px;margin-top: 39px">
+                        <span><label class="h4" style="color:#B0BEC5">请选择起始时间:</label></span>
+                        <span>
                                           <wui-date
                                                   format="yyyy-mm-dd"
                                                   placeholder="起始时间"
@@ -17,10 +18,11 @@
                                     </wui-date>
                                     </span>
 
-                        </div>
-                        <div class=endtime" style="text-align: center;display: inline-block;margin-right: 30px;margin-top: 39px">
-                            <span><label class="h4" style="color:#B0BEC5" >请选择截止时间:</label></span>
-                            <span>
+                    </div>
+                    <div class=endtime"
+                         style="text-align: center;display: inline-block;margin-right: 30px;margin-top: 39px">
+                        <span><label class="h4" style="color:#B0BEC5">请选择截止时间:</label></span>
+                        <span>
                                           <wui-date
 
                                                   format="yyyy-mm-dd"
@@ -31,63 +33,65 @@
                                           >
                                     </wui-date>
                                     </span>
-                        </div>
-                        <div class="form-group" style="display:inline-block;text-align: center;margin-right: 10px">
-                            <h5 style="color: red" ng-if="errormessage!=''">{{errormessage}}</h5>
-                        </div>
-                        <div style="width: 263px;height:12px;display: inline-block" ng-if="errormessage==''"></div>
-                        <div class="form-group" style="display:inline-block;text-align:center">
-                            <input type="button" class="btn  btn-success btn-lg" value="查询" ng-click="getByStartAndEnd()" style="padding: 19px 33px;line-height:7px">
-                        </div>
                     </div>
-
+                    <div class="form-group" style="display:inline-block;text-align: center;margin-right: 10px">
+                        <h5 style="color: red" ng-if="errormessage!=''">{{errormessage}}</h5>
+                    </div>
+                    <div style="width: 263px;height:12px;display: inline-block" ng-if="errormessage==''"></div>
+                    <div class="form-group" style="display:inline-block;text-align:center">
+                        <input type="button" class="btn  btn-success btn-lg" value="查询" ng-click="getByStartAndEnd()"
+                               style="padding: 19px 33px;line-height:7px">
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
+
+    </div>
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card" style="width: 1680px">
+            <div class="card dataTable" >
                 <div class="card-body">
                     <h4 class="card-title">中国建设银行</h4>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
+                    <div class="table-responsive" >
+                        <table class=" table table-bordered dataTable">
                             <thead>
                             <tr>
-                                <th style="width: 80px">账号</th>
-                                <th style="width: 100px">账户名称</th>
-                                <th style="width: 100px">交易时间</th>
-                                <th style="width: 158px">借方发生额</th>
-                                <th style="width: 158px">贷方发生额</th>
-                                <th style="width: 80px">余额</th>
-                                <th style="width: 80px">币种</th>
-                                <th style="width: 100px">对方账号</th>
-                                <th style="width: 120px">对方开户机构</th>
-                                <th style="width: 120px">企业流水号</th>
-                                <th style="width: 120px">凭证种类</th>
-                                <th style="width: 80px">凭证号</th>
+                                <th >账号</th>
+                                <th >账户名称</th>
+                                <th >交易时间</th>
+                                <th >借方发生额</th>
+                                <th >贷方发生额</th>
+                                <th >对方账号</th>
+                                <th >对方开户机构</th>
+                                <th >凭证种类</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr ng-repeat="i in economicandconstructionbank">
-                                <td>{{i.accountNumber}}</td>
-                                <td>{{i.accountTitle}}</td>
-                                <td>{{i.transactionTime}}</td>
-                                <td>{{i.debitAmount}}</td>
-                                <td>{{i.creditAmount}}</td>
-                                <td>{{i.currency}}</td>
-                                <td>{{i.counterAccount}}</td>
-                                <td>{{i.counterName}}</td>
-                                <td>{{i.openingAccount}}</td>
-                                <td>{{i.enterpriseSerialNumber}}</td>
-                                <td>{{i.documentCategory}}</td>
-                                <td>{{i.documentNumber}}</td>
+                                <td title="{{i.accountNumber}}">{{i.accountNumber}}</td>
+                                <td title="{{i.accountTitle}}">{{i.accountTitle}}</td>
+                                <td title="{{i.transactionTime}}">{{i.transactionTime}}</td>
+                                <td title="{{i.debitAmount}}">{{i.debitAmount}}</td>
+                                <td title="{{i.creditAmount}}">{{i.creditAmount}}</td>
+                                <td title="{{i.counterName}}">{{i.counterName}}</td>
+                                <td title="{{i.openingAccount}}">{{i.openingAccount}}</td>
+                                <td title="{{i.documentCategory}}">{{i.documentCategory}}</td>
                             </tr>
 
 
                             </tbody>
                         </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-md-8" style="margin-left: 10px">
+                            <pagination data="data" option="option"
+                                        mappinglist="economicandconstructionbank"></pagination>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <h5>{{'共计: '+data.length+' 条 数据'}}</h5>
+                        </div>
                     </div>
                 </div>
             </div>
