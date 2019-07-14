@@ -20,8 +20,10 @@ public class MerchantsBankServiceImpl implements MerchantsBankService {
 
 
     @Override
-    public List<MerchantsBankDO> findByAccountTitleAndDatetime(String accountTitle, String startDateTime, String endDateTime) {
-
+    public List<MerchantsBankDO> findByAccountTitleAndDatetime(String startDateTime, String endDateTime, String accountTitle) {
+        System.out.println("startDateTime:"+startDateTime);
+        System.out.println("endDateTime:"+endDateTime);
+        System.out.println("accountTitle:"+accountTitle);
         return merchantsBankDAO.findByDateAAndAccountTitle(startDateTime,endDateTime,accountTitle);
     }
 

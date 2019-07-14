@@ -6,31 +6,44 @@ import java.util.Objects;
 @Entity
 @Table(name = "dbs_bank", schema = "kidsland", catalog = "")
 public class DbsBankDO {
-    @Id
     private int id;
-    private String bDs;
-    private String date;
-    private String accountTitle;
     private String accountNumber;
-    private String debitAccountCurrency;
+    private String accountName;
+    private String productType;
+    private String businessDate;
+    private String currency;
     private String openingBalance;
-    private String closingBookBalance;
-    private String closingAvailableBalance;
-    private String totalCreditAmount;
-    private String totalCreditCount;
-    private String statementDate;
-    private String totalDebitCount;
+    private String ledgerBalance;
+    private String availableBalance;
+    private String overdraftLimit;
+    private String earmarkAmount;
+    private String miscellaneousHold;
+    private String halfDayHold;
+    private String oneDayHold;
+    private String twoDayHold;
+    private String totalNumberOfDebits;
     private String totalDebitAmount;
-    private String holdAmount;
-    private String statementDetailValueDate;
-    private String postingDate;
-    private String debitAmount;
+    private String totalNumberOfCredits;
+    private String totalCreditAmount;
+    private String accountTitle;
+    private String bDs;
+    private String closingAvailableBalance;
+    private String closingBookBalance;
     private String creditAmount;
-    private String transactionTypeCode;
-    private String supplementaryDetails;
+    private String date;
+    private String debitAccountCurrency;
+    private String debitAmount;
+    private String holdAmount;
+    private String postingDate;
+    private String statementDate;
     private String statementDetailInfoToAccountOwner1;
     private String statementDetailInfoToAccountOwner2;
     private String statementDetailInfoToAccountOwner3;
+    private String statementDetailValueDate;
+    private String supplementaryDetails;
+    private String totalCreditCount;
+    private String totalDebitCount;
+    private String transactionTypeCode;
 
     @Id
     @Column(name = "id")
@@ -40,36 +53,6 @@ public class DbsBankDO {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "B_DS")
-    public String getbDs() {
-        return bDs;
-    }
-
-    public void setbDs(String bDs) {
-        this.bDs = bDs;
-    }
-
-    @Basic
-    @Column(name = "date")
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    @Basic
-    @Column(name = "account_title")
-    public String getAccountTitle() {
-        return accountTitle;
-    }
-
-    public void setAccountTitle(String accountTitle) {
-        this.accountTitle = accountTitle;
     }
 
     @Basic
@@ -83,13 +66,43 @@ public class DbsBankDO {
     }
 
     @Basic
-    @Column(name = "debit_account_currency")
-    public String getDebitAccountCurrency() {
-        return debitAccountCurrency;
+    @Column(name = "account_name")
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setDebitAccountCurrency(String debitAccountCurrency) {
-        this.debitAccountCurrency = debitAccountCurrency;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    @Basic
+    @Column(name = "product_type")
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    @Basic
+    @Column(name = "business_date")
+    public String getBusinessDate() {
+        return businessDate;
+    }
+
+    public void setBusinessDate(String businessDate) {
+        this.businessDate = businessDate;
+    }
+
+    @Basic
+    @Column(name = "currency")
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     @Basic
@@ -103,63 +116,93 @@ public class DbsBankDO {
     }
 
     @Basic
-    @Column(name = "closing_book_balance")
-    public String getClosingBookBalance() {
-        return closingBookBalance;
+    @Column(name = "ledger_balance")
+    public String getLedgerBalance() {
+        return ledgerBalance;
     }
 
-    public void setClosingBookBalance(String closingBookBalance) {
-        this.closingBookBalance = closingBookBalance;
-    }
-
-    @Basic
-    @Column(name = "closing_available_balance")
-    public String getClosingAvailableBalance() {
-        return closingAvailableBalance;
-    }
-
-    public void setClosingAvailableBalance(String closingAvailableBalance) {
-        this.closingAvailableBalance = closingAvailableBalance;
+    public void setLedgerBalance(String ledgerBalance) {
+        this.ledgerBalance = ledgerBalance;
     }
 
     @Basic
-    @Column(name = "total_credit_amount")
-    public String getTotalCreditAmount() {
-        return totalCreditAmount;
+    @Column(name = "available_balance")
+    public String getAvailableBalance() {
+        return availableBalance;
     }
 
-    public void setTotalCreditAmount(String totalCreditAmount) {
-        this.totalCreditAmount = totalCreditAmount;
-    }
-
-    @Basic
-    @Column(name = "total_credit_count")
-    public String getTotalCreditCount() {
-        return totalCreditCount;
-    }
-
-    public void setTotalCreditCount(String totalCreditCount) {
-        this.totalCreditCount = totalCreditCount;
+    public void setAvailableBalance(String availableBalance) {
+        this.availableBalance = availableBalance;
     }
 
     @Basic
-    @Column(name = "statement_date")
-    public String getStatementDate() {
-        return statementDate;
+    @Column(name = "overdraft_limit")
+    public String getOverdraftLimit() {
+        return overdraftLimit;
     }
 
-    public void setStatementDate(String statementDate) {
-        this.statementDate = statementDate;
+    public void setOverdraftLimit(String overdraftLimit) {
+        this.overdraftLimit = overdraftLimit;
     }
 
     @Basic
-    @Column(name = "total_debit_count")
-    public String getTotalDebitCount() {
-        return totalDebitCount;
+    @Column(name = "earmark_amount")
+    public String getEarmarkAmount() {
+        return earmarkAmount;
     }
 
-    public void setTotalDebitCount(String totalDebitCount) {
-        this.totalDebitCount = totalDebitCount;
+    public void setEarmarkAmount(String earmarkAmount) {
+        this.earmarkAmount = earmarkAmount;
+    }
+
+    @Basic
+    @Column(name = "miscellaneous_hold")
+    public String getMiscellaneousHold() {
+        return miscellaneousHold;
+    }
+
+    public void setMiscellaneousHold(String miscellaneousHold) {
+        this.miscellaneousHold = miscellaneousHold;
+    }
+
+    @Basic
+    @Column(name = "half_day_hold")
+    public String getHalfDayHold() {
+        return halfDayHold;
+    }
+
+    public void setHalfDayHold(String halfDayHold) {
+        this.halfDayHold = halfDayHold;
+    }
+
+    @Basic
+    @Column(name = "one_day_hold")
+    public String getOneDayHold() {
+        return oneDayHold;
+    }
+
+    public void setOneDayHold(String oneDayHold) {
+        this.oneDayHold = oneDayHold;
+    }
+
+    @Basic
+    @Column(name = "two_day_hold")
+    public String getTwoDayHold() {
+        return twoDayHold;
+    }
+
+    public void setTwoDayHold(String twoDayHold) {
+        this.twoDayHold = twoDayHold;
+    }
+
+    @Basic
+    @Column(name = "total_number_of_debits")
+    public String getTotalNumberOfDebits() {
+        return totalNumberOfDebits;
+    }
+
+    public void setTotalNumberOfDebits(String totalNumberOfDebits) {
+        this.totalNumberOfDebits = totalNumberOfDebits;
     }
 
     @Basic
@@ -173,43 +216,63 @@ public class DbsBankDO {
     }
 
     @Basic
-    @Column(name = "hold_amount")
-    public String getHoldAmount() {
-        return holdAmount;
+    @Column(name = "total_number_of_credits")
+    public String getTotalNumberOfCredits() {
+        return totalNumberOfCredits;
     }
 
-    public void setHoldAmount(String holdAmount) {
-        this.holdAmount = holdAmount;
-    }
-
-    @Basic
-    @Column(name = "statement_detail_value_date")
-    public String getStatementDetailValueDate() {
-        return statementDetailValueDate;
-    }
-
-    public void setStatementDetailValueDate(String statementDetailValueDate) {
-        this.statementDetailValueDate = statementDetailValueDate;
+    public void setTotalNumberOfCredits(String totalNumberOfCredits) {
+        this.totalNumberOfCredits = totalNumberOfCredits;
     }
 
     @Basic
-    @Column(name = "posting_date")
-    public String getPostingDate() {
-        return postingDate;
+    @Column(name = "total_credit_amount")
+    public String getTotalCreditAmount() {
+        return totalCreditAmount;
     }
 
-    public void setPostingDate(String postingDate) {
-        this.postingDate = postingDate;
+    public void setTotalCreditAmount(String totalCreditAmount) {
+        this.totalCreditAmount = totalCreditAmount;
     }
 
     @Basic
-    @Column(name = "debit_amount")
-    public String getDebitAmount() {
-        return debitAmount;
+    @Column(name = "account_title")
+    public String getAccountTitle() {
+        return accountTitle;
     }
 
-    public void setDebitAmount(String debitAmount) {
-        this.debitAmount = debitAmount;
+    public void setAccountTitle(String accountTitle) {
+        this.accountTitle = accountTitle;
+    }
+
+    @Basic
+    @Column(name = "b_ds")
+    public String getbDs() {
+        return bDs;
+    }
+
+    public void setbDs(String bDs) {
+        this.bDs = bDs;
+    }
+
+    @Basic
+    @Column(name = "closing_available_balance")
+    public String getClosingAvailableBalance() {
+        return closingAvailableBalance;
+    }
+
+    public void setClosingAvailableBalance(String closingAvailableBalance) {
+        this.closingAvailableBalance = closingAvailableBalance;
+    }
+
+    @Basic
+    @Column(name = "closing_book_balance")
+    public String getClosingBookBalance() {
+        return closingBookBalance;
+    }
+
+    public void setClosingBookBalance(String closingBookBalance) {
+        this.closingBookBalance = closingBookBalance;
     }
 
     @Basic
@@ -223,23 +286,63 @@ public class DbsBankDO {
     }
 
     @Basic
-    @Column(name = "transaction_type_code")
-    public String getTransactionTypeCode() {
-        return transactionTypeCode;
+    @Column(name = "date")
+    public String getDate() {
+        return date;
     }
 
-    public void setTransactionTypeCode(String transactionTypeCode) {
-        this.transactionTypeCode = transactionTypeCode;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     @Basic
-    @Column(name = "supplementary_details")
-    public String getSupplementaryDetails() {
-        return supplementaryDetails;
+    @Column(name = "debit_account_currency")
+    public String getDebitAccountCurrency() {
+        return debitAccountCurrency;
     }
 
-    public void setSupplementaryDetails(String supplementaryDetails) {
-        this.supplementaryDetails = supplementaryDetails;
+    public void setDebitAccountCurrency(String debitAccountCurrency) {
+        this.debitAccountCurrency = debitAccountCurrency;
+    }
+
+    @Basic
+    @Column(name = "debit_amount")
+    public String getDebitAmount() {
+        return debitAmount;
+    }
+
+    public void setDebitAmount(String debitAmount) {
+        this.debitAmount = debitAmount;
+    }
+
+    @Basic
+    @Column(name = "hold_amount")
+    public String getHoldAmount() {
+        return holdAmount;
+    }
+
+    public void setHoldAmount(String holdAmount) {
+        this.holdAmount = holdAmount;
+    }
+
+    @Basic
+    @Column(name = "posting_date")
+    public String getPostingDate() {
+        return postingDate;
+    }
+
+    public void setPostingDate(String postingDate) {
+        this.postingDate = postingDate;
+    }
+
+    @Basic
+    @Column(name = "statement_date")
+    public String getStatementDate() {
+        return statementDate;
+    }
+
+    public void setStatementDate(String statementDate) {
+        this.statementDate = statementDate;
     }
 
     @Basic
@@ -272,40 +375,104 @@ public class DbsBankDO {
         this.statementDetailInfoToAccountOwner3 = statementDetailInfoToAccountOwner3;
     }
 
+    @Basic
+    @Column(name = "statement_detail_value_date")
+    public String getStatementDetailValueDate() {
+        return statementDetailValueDate;
+    }
+
+    public void setStatementDetailValueDate(String statementDetailValueDate) {
+        this.statementDetailValueDate = statementDetailValueDate;
+    }
+
+    @Basic
+    @Column(name = "supplementary_details")
+    public String getSupplementaryDetails() {
+        return supplementaryDetails;
+    }
+
+    public void setSupplementaryDetails(String supplementaryDetails) {
+        this.supplementaryDetails = supplementaryDetails;
+    }
+
+    @Basic
+    @Column(name = "total_credit_count")
+    public String getTotalCreditCount() {
+        return totalCreditCount;
+    }
+
+    public void setTotalCreditCount(String totalCreditCount) {
+        this.totalCreditCount = totalCreditCount;
+    }
+
+    @Basic
+    @Column(name = "total_debit_count")
+    public String getTotalDebitCount() {
+        return totalDebitCount;
+    }
+
+    public void setTotalDebitCount(String totalDebitCount) {
+        this.totalDebitCount = totalDebitCount;
+    }
+
+    @Basic
+    @Column(name = "transaction_type_code")
+    public String getTransactionTypeCode() {
+        return transactionTypeCode;
+    }
+
+    public void setTransactionTypeCode(String transactionTypeCode) {
+        this.transactionTypeCode = transactionTypeCode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DbsBankDO that = (DbsBankDO) o;
         return id == that.id &&
-                Objects.equals(bDs, that.bDs) &&
-                Objects.equals(date, that.date) &&
-                Objects.equals(accountTitle, that.accountTitle) &&
                 Objects.equals(accountNumber, that.accountNumber) &&
-                Objects.equals(debitAccountCurrency, that.debitAccountCurrency) &&
+                Objects.equals(accountName, that.accountName) &&
+                Objects.equals(productType, that.productType) &&
+                Objects.equals(businessDate, that.businessDate) &&
+                Objects.equals(currency, that.currency) &&
                 Objects.equals(openingBalance, that.openingBalance) &&
-                Objects.equals(closingBookBalance, that.closingBookBalance) &&
-                Objects.equals(closingAvailableBalance, that.closingAvailableBalance) &&
-                Objects.equals(totalCreditAmount, that.totalCreditAmount) &&
-                Objects.equals(totalCreditCount, that.totalCreditCount) &&
-                Objects.equals(statementDate, that.statementDate) &&
-                Objects.equals(totalDebitCount, that.totalDebitCount) &&
+                Objects.equals(ledgerBalance, that.ledgerBalance) &&
+                Objects.equals(availableBalance, that.availableBalance) &&
+                Objects.equals(overdraftLimit, that.overdraftLimit) &&
+                Objects.equals(earmarkAmount, that.earmarkAmount) &&
+                Objects.equals(miscellaneousHold, that.miscellaneousHold) &&
+                Objects.equals(halfDayHold, that.halfDayHold) &&
+                Objects.equals(oneDayHold, that.oneDayHold) &&
+                Objects.equals(twoDayHold, that.twoDayHold) &&
+                Objects.equals(totalNumberOfDebits, that.totalNumberOfDebits) &&
                 Objects.equals(totalDebitAmount, that.totalDebitAmount) &&
-                Objects.equals(holdAmount, that.holdAmount) &&
-                Objects.equals(statementDetailValueDate, that.statementDetailValueDate) &&
-                Objects.equals(postingDate, that.postingDate) &&
-                Objects.equals(debitAmount, that.debitAmount) &&
+                Objects.equals(totalNumberOfCredits, that.totalNumberOfCredits) &&
+                Objects.equals(totalCreditAmount, that.totalCreditAmount) &&
+                Objects.equals(accountTitle, that.accountTitle) &&
+                Objects.equals(bDs, that.bDs) &&
+                Objects.equals(closingAvailableBalance, that.closingAvailableBalance) &&
+                Objects.equals(closingBookBalance, that.closingBookBalance) &&
                 Objects.equals(creditAmount, that.creditAmount) &&
-                Objects.equals(transactionTypeCode, that.transactionTypeCode) &&
-                Objects.equals(supplementaryDetails, that.supplementaryDetails) &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(debitAccountCurrency, that.debitAccountCurrency) &&
+                Objects.equals(debitAmount, that.debitAmount) &&
+                Objects.equals(holdAmount, that.holdAmount) &&
+                Objects.equals(postingDate, that.postingDate) &&
+                Objects.equals(statementDate, that.statementDate) &&
                 Objects.equals(statementDetailInfoToAccountOwner1, that.statementDetailInfoToAccountOwner1) &&
                 Objects.equals(statementDetailInfoToAccountOwner2, that.statementDetailInfoToAccountOwner2) &&
-                Objects.equals(statementDetailInfoToAccountOwner3, that.statementDetailInfoToAccountOwner3);
+                Objects.equals(statementDetailInfoToAccountOwner3, that.statementDetailInfoToAccountOwner3) &&
+                Objects.equals(statementDetailValueDate, that.statementDetailValueDate) &&
+                Objects.equals(supplementaryDetails, that.supplementaryDetails) &&
+                Objects.equals(totalCreditCount, that.totalCreditCount) &&
+                Objects.equals(totalDebitCount, that.totalDebitCount) &&
+                Objects.equals(transactionTypeCode, that.transactionTypeCode);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, bDs, date, accountTitle, accountNumber, debitAccountCurrency, openingBalance, closingBookBalance, closingAvailableBalance, totalCreditAmount, totalCreditCount, statementDate, totalDebitCount, totalDebitAmount, holdAmount, statementDetailValueDate, postingDate, debitAmount, creditAmount, transactionTypeCode, supplementaryDetails, statementDetailInfoToAccountOwner1, statementDetailInfoToAccountOwner2, statementDetailInfoToAccountOwner3);
+        return Objects.hash(id, accountNumber, accountName, productType, businessDate, currency, openingBalance, ledgerBalance, availableBalance, overdraftLimit, earmarkAmount, miscellaneousHold, halfDayHold, oneDayHold, twoDayHold, totalNumberOfDebits, totalDebitAmount, totalNumberOfCredits, totalCreditAmount, accountTitle, bDs, closingAvailableBalance, closingBookBalance, creditAmount, date, debitAccountCurrency, debitAmount, holdAmount, postingDate, statementDate, statementDetailInfoToAccountOwner1, statementDetailInfoToAccountOwner2, statementDetailInfoToAccountOwner3, statementDetailValueDate, supplementaryDetails, totalCreditCount, totalDebitCount, transactionTypeCode);
     }
 }

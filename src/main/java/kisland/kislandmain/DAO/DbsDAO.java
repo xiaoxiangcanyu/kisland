@@ -10,6 +10,6 @@ public interface DbsDAO extends JpaRepository<DbsBankDO,Long> {
     /**
      * 根据时间段和公司名称查询农行的数据
      */
-    @Query("select a from DbsBankDO a where a.accountTitle =?3 and a.date between ?1 and ?2")
+    @Query("select a from DbsBankDO a where a.accountName=?3 and a.businessDate between ?1 and ?2")
     List<DbsBankDO> findByDateAndAccountTitle(String startTime, String endTime, String accountTitle);
 }

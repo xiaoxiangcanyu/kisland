@@ -33,6 +33,8 @@ public class IndexController {
     @Autowired
     MinshengBankService minshengBankService;
     @Autowired
+    DbsBankService dbsBankService;
+    @Autowired
     IncomeService incomeService;
     @Autowired
     ChargeService chargeService;
@@ -144,7 +146,7 @@ public class IndexController {
     @RequestMapping(value = "/findChinaBankByAccountTitleAndDate")
     @ResponseBody
     List<ChinaBankDO> findChinaBankByAccountTitleAndDate(@RequestParam(value = "AccountTitle") String AccountTitle, @RequestParam(value = "StartDateTime") String StartDateTime, @RequestParam(value = "EndDateTime") String EndDateTime){
-        return chinaBankService.findByAccountTitleAndDatetime(AccountTitle,StartDateTime,EndDateTime);
+        return chinaBankService.findByAccountTitleAndDatetime(StartDateTime,EndDateTime,AccountTitle);
     }
     /**
      * 根据公司名称查询中国农业银行数据
@@ -187,7 +189,6 @@ public class IndexController {
     @RequestMapping(value = "/findMinshengBankByAccountTitleAndDate")
     @ResponseBody
     List<MinshengBankDO> findMinshengBankByAccountTitleAndDate(@RequestParam(value = "AccountTitle") String AccountTitle, @RequestParam(value = "StartDateTime") String StartDateTime, @RequestParam(value = "EndDateTime") String EndDateTime){
-        System.out.println(AccountTitle);
         return minshengBankService.findByAccountTitleAndDatetime(AccountTitle,StartDateTime,EndDateTime);
     }
     /**
@@ -198,8 +199,14 @@ public class IndexController {
     @RequestMapping(value = "/findMerchantsBankByAccountTitleAndDate")
     @ResponseBody
     List<MerchantsBankDO> findMerchantsBankByAccountTitleAndDate(@RequestParam(value = "AccountTitle") String AccountTitle, @RequestParam(value = "StartDateTime") String StartDateTime, @RequestParam(value = "EndDateTime") String EndDateTime){
-        System.out.println(AccountTitle);
-        return merchantsBankService.findByAccountTitleAndDatetime(AccountTitle,StartDateTime,EndDateTime);
+        return merchantsBankService.findByAccountTitleAndDatetime(StartDateTime,EndDateTime,AccountTitle);
+    }
+
+    @RequestMapping(value = "findDbsBankByAccountTitleAndDate")
+    @ResponseBody
+    List<DbsBankDO> findDbsBankByAccountTitleAndDate(@RequestParam(value = "AccountTitle") String AccountTitle, @RequestParam(value = "StartDateTime") String StartDateTime, @RequestParam(value = "EndDateTime") String EndDateTime){
+
+        return dbsBankService.findByAccountTitleAndDate(StartDateTime,EndDateTime,AccountTitle);
     }
 
     @RequestMapping(value = "/SearchBankBalance")

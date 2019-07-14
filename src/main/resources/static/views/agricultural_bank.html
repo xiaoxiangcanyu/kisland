@@ -47,38 +47,47 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="card" style="width: 1750px">
+            <div class="card dataTableCard" >
                 <div class="card-body">
                     <h4 class="card-title">中国农业银行</h4>
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered dataTable">
                             <thead>
                             <tr>
-                                <th style="width: 10%">交易时间</th>
-                                <th style="width: 10%">收入金额</th>
-                                <th style="width: 10%">支出金额</th>
-                                <th style="width: 10%">账户余额</th>
-                                <th style="width: 10%">交易行名</th>
-                                <th style="width: 10%">对方账号</th>
-                                <th style="width: 10%">对方户名</th>
-                                <th style="width: 10%">交易用途</th>
+                                <th >交易时间</th>
+                                <th >收入金额</th>
+                                <th >支出金额</th>
+                                <th >账户余额</th>
+                                <th >交易行名</th>
+                                <th >对方账号</th>
+                                <th >对方户名</th>
+                                <th >交易用途</th>
 
                             </tr>
                             </thead>
                             <tbody>
                             <tr ng-repeat="i in agriculturalbankdata">
-                                <td>{{i.transactionTime}}</td>
-                                <td>{{i.amountIncome}}</td>
-                                <td>{{i.amountCost}}</td>
-                                <td>{{i.accountBalance}}</td>
-                                <td>{{i.bankName}}</td>
-                                <td>{{i.otherPartyAccount}}</td>
-                                <td>{{i.otherPartyName}}</td>
-                                <td>{{i.tradingPurpose}}</td>
+                                <td title="{{i.transactionTime}}">{{i.transactionTime}}</td>
+                                <td title="{{i.amountIncome}}">{{i.amountIncome}}</td>
+                                <td title="{{i.amountCost}}">{{i.amountCost}}</td>
+                                <td title="{{i.accountBalance}}">{{i.accountBalance}}</td>
+                                <td title="{{i.bankName}}">{{i.bankName}}</td>
+                                <td title="{{i.otherPartyAccount}}">{{i.otherPartyAccount}}</td>
+                                <td title="{{i.otherPartyName}}">{{i.otherPartyName}}</td>
+                                <td title="{{i.tradingPurpose}}">{{i.tradingPurpose}}</td>
                             </tr>
 
                             </tbody>
                         </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-md-8" style="margin-left: 10px">
+                            <pagination data="data" option="option"
+                                        mappinglist ="agriculturalbankdata"></pagination>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <h5>{{'共计: '+data.length+' 条 数据'}}</h5>
+                        </div>
                     </div>
                 </div>
             </div>

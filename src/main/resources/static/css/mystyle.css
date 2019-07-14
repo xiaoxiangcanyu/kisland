@@ -1,0 +1,17 @@
+.dataTableCard{
+    width: 1750px;
+}
+.dataTable tr th{
+    width: 10%;
+    border: 1px solid;
+    text-align: center;
+}
+.dataTable tr td{
+    width: 10%;
+    text-overflow: ellipsis; /* for IE */
+    -moz-text-overflow: ellipsis; /* for Firefox,mozilla */
+    overflow: hidden;
+    white-space: nowrap;
+    border: 1px solid;
+    text-align:center;
+}

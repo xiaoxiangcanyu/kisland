@@ -1,4 +1,4 @@
-<div  ng-controller="ChinaBankController">
+<div   ng-controller="DbsBankController">
     <h4>{{$root.companyName}}</h4>
     <div class="row">
         <div class="col-md-12">
@@ -47,38 +47,34 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="card dataTableCard">
+            <div class="card" style="width: 1750px">
                 <div class="card-body">
-                    <h4 class="card-title">中国银行</h4>
+                    <h4 class="card-title">星展银行</h4>
                     <div class="table-responsive">
                         <table class="table table-bordered dataTable">
                             <thead>
                             <tr>
-                                <th>交易类型</th>
-                                <th>业务类型</th>
-                                <th>付款人名称</th>
-                                <th>收款人账号</th>
-                                <th>收款人名称</th>
-                                <th>交易日期</th>
-                                <th>交易时间</th>
-                                <th>交易货币</th>
-                                <th>交易金额</th>
-                                <th>交易后余额</th>
+                                <th >银行账户号</th>
+                                <th >银行账户名称</th>
+                                <th >产品类型</th>
+                                <th >币种</th>
+                                <th >开放余额</th>
+                                <th >台账余额</th>
+                                <th >可获余额</th>
+                                <th >交易时间</th>
 
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="i in chinabankdata">
-                                <td>{{i.transactionType}}</td>
-                                <td>{{i.businessType}}</td>
-                                <td>{{i.payerName}}</td>
-                                <td>{{i.payeeAccountNumber}}</td>
-                                <td>{{i.payeeName}}</td>
-                                <td>{{i.transactionDate}}</td>
-                                <td>{{i.transactionTime}}</td>
-                                <td>{{i.tradeCurrency}}</td>
-                                <td>{{i.tradeAmount}}</td>
-                                <td>{{i.afterTransactionBalance}}</td>
+                            <tr ng-repeat="i in Dbsbankdata">
+                                <td title="{{i.accountNumber}}">{{i.accountNumber}}</td>
+                                <td title="{{i.accountName}}">{{i.accountName}}</td>
+                                <td title="{{i.productType}}">{{i.productType}}</td>
+                                <td title="{{i.currency}}">{{i.currency}}</td>
+                                <td title="{{i.openingBalance}}">{{i.openingBalance}}</td>
+                                <td title="{{i.ledgerBalance}}">{{i.ledgerBalance}}</td>
+                                <td title="{{i.availableBalance}}">{{i.availableBalance}}</td>
+                                <td title="{{i.businessDate}}">{{i.businessDate}}</td>
                             </tr>
 
                             </tbody>
@@ -87,7 +83,7 @@
                     <div class="row">
                         <div class="col-sm-8 col-md-8" style="margin-left: 10px">
                             <pagination data="data" option="option"
-                                        mappinglist ="chinabankdata"></pagination>
+                                        mappinglist ="Dbsbankdata"></pagination>
                         </div>
                         <div class="col-sm-2 col-md-2">
                             <h5>{{'共计: '+data.length+' 条 数据'}}</h5>

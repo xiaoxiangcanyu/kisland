@@ -46,39 +46,48 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="card" style="width: 1680px">
+            <div class="card dataTableCard" >
                 <div class="card-body">
                     <h4 class="card-title">中国招商银行</h4>
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered dataTable">
                             <thead>
                             <tr>
-                                <th style="width: 10%">交易日</th>
-                                <th style="width: 10%">交易时间</th>
-                                <th style="width: 10%">起息日</th>
-                                <th style="width: 10%">交易类型</th>
-                                <th style="width: 10%">借方金额</th>
-                                <th style="width: 10%">贷方金额</th>
-                                <th style="width: 10%">余额</th>
-                                <th style="width: 10%">摘要</th>
-                                <th style="width: 10%">流水号</th>
+                                <th >交易日</th>
+                                <th >交易时间</th>
+                                <th >起息日</th>
+                                <th >交易类型</th>
+                                <th >借方金额</th>
+                                <th >贷方金额</th>
+                                <th >余额</th>
+                                <th >摘要</th>
+                                <th >流水号</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr ng-repeat="i in merchantsbankdata">
-                                <td>{{i.transactionDay}}</td>
-                                <td>{{i.transactionHour}}</td>
-                                <td>{{i.interestDate}}</td>
-                                <td>{{i.transactionType}}</td>
-                                <td>{{i.debitAmount}}</td>
-                                <td>{{i.creditAmount}}</td>
-                                <td>{{i.balance}}</td>
-                                <td>{{i.bankAbstract}}</td>
-                                <td>{{i.serialNumber}}</td>
+                                <td title="{{i.transactionDay}}">{{i.transactionDay}}</td>
+                                <td title="{{i.transactionHour}}">{{i.transactionHour}}</td>
+                                <td title="{{i.interestDate}}">{{i.interestDate}}</td>
+                                <td title="{{i.transactionType}}">{{i.transactionType}}</td>
+                                <td title="{{i.debitAmount}}">{{i.debitAmount}}</td>
+                                <td title="{{i.creditAmount}}">{{i.creditAmount}}</td>
+                                <td title="{{i.balance}}">{{i.balance}}</td>
+                                <td title="{{i.bankAbstract}}">{{i.bankAbstract}}</td>
+                                <td title="{{i.serialNumber}}">{{i.serialNumber}}</td>
                             </tr>
 
                             </tbody>
                         </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-md-8" style="margin-left: 10px">
+                            <pagination data="data" option="option"
+                                        mappinglist ="merchantsbankdata"></pagination>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <h5>{{'共计: '+data.length+' 条 数据'}}</h5>
+                        </div>
                     </div>
                 </div>
             </div>

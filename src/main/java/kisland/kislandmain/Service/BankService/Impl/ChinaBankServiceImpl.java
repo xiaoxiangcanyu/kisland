@@ -21,9 +21,11 @@ public class ChinaBankServiceImpl implements ChinaBankService {
 
 
     @Override
-    public List<ChinaBankDO> findByAccountTitleAndDatetime(String accountTitle, String startDateTime, String endDateTime) {
-
-        return chinaBankDAO.findByDateAAndAccountTitle(accountTitle,startDateTime,endDateTime);
+    public List<ChinaBankDO> findByAccountTitleAndDatetime(String startDateTime, String endDateTime,String accountTitle) {
+        System.out.println("startDateTime:"+startDateTime);
+        System.out.println("endDateTime:"+endDateTime);
+        System.out.println("accountTitle:"+accountTitle);
+        return chinaBankDAO.findByDateAAndAccountTitle(startDateTime,endDateTime,accountTitle);
     }
 
     @Override

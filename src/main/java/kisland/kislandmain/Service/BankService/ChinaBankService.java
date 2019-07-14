@@ -11,7 +11,7 @@ public interface ChinaBankService {
      * @param accountTitle
      * @return
      */
-    List<ChinaBankDO> findByAccountTitleAndDatetime(String accountTitle, String startDateTime, String endDateTime);
+    List<ChinaBankDO> findByAccountTitleAndDatetime(String startDateTime, String endDateTime,String accountTitle);
 
     List<ChinaBankDO> findAll();
 
