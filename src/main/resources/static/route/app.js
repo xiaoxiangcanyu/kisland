@@ -467,20 +467,26 @@ app.controller('CapitalDailyTableController', function ($scope, $state, $rootSco
     $scope.chargecategoryname = "";
     $scope.startTime = "";
     $scope.endTime = "";
-    // ======================================================受限资金===========================================================================
-    $scope.BeginningLimitedFundKZL = "";
+    // ======================================================可用资金===========================================================================
+    $scope.BeginningLimitedFundKZL =  "";
     $scope.BeginningLimitedFundNorth = "";
+    $scope.BeginningLimitedFundMid =  "";
+    $scope.BeginningLimitedFundSouth =  "";
     $scope.BeginningLimitedFundSum = "";
     $scope.EndLimitedFundKZL = "";
-    $scope.EndLimitedFundNorth = "";
-    $scope.EndLimitedFundSum = "";
-    // ======================================================受限资金===========================================================================
+    $scope.EndLimitedFundNorth =  "";
+    $scope.EndLimitedFundMid = "";
+    $scope.EndLimitedFundSouth = "";
+    $scope.EndLimitedFundSum =  "";
+    // ======================================================可用资金===========================================================================
 
     // ======================================================收款资金===========================================================================
     // ========================================================北区================================================================
     $scope.IncomeKZL = "";
     $scope.IncomeNorth = "";
-    $scope.IncomeSum = "";
+    $scope.IncomeMid = "";
+    $scope.IncomeSouth = "";
+    $scope.IncomeSum =  "";
     // ========================================================北区================================================================
     // ======================================================收款资金===========================================================================
 
@@ -488,7 +494,9 @@ app.controller('CapitalDailyTableController', function ($scope, $state, $rootSco
     // ========================================================北区================================================================
     $scope.ChargeKZL = "";
     $scope.ChargeNorth = "";
-    $scope.ChargeSum = "";
+    $scope.ChargeMid = "";
+    $scope.ChargeSouth = "";
+    $scope.ChargeSum =  "";
     // ========================================================北区================================================================
     // ======================================================付款资金===========================================================================
 
@@ -497,20 +505,31 @@ app.controller('CapitalDailyTableController', function ($scope, $state, $rootSco
         //初始化资金日报表
         AjaxGetCapitalStatisticsService.GetList($scope.startTime, $scope.endTime).then(function (result) {
             console.log(result);
-            $scope.BeginningLimitedFundKZL = result['受限资金']['期初受限资金-凯知乐'];
-            $scope.BeginningLimitedFundNorth = result['受限资金']['期初受限资金-北区'];
-            $scope.BeginningLimitedFundSum = result['受限资金']['期初受限资金总和'];
-            $scope.EndLimitedFundKZL = result['受限资金']['期末受限资金-凯知乐'];
-            $scope.EndLimitedFundNorth = result['受限资金']['期末受限资金-北区'];
-            $scope.EndLimitedFundSum = result['受限资金']['期末受限资金总和'];
-            $scope.IncomeKZL = result['收款']['凯知乐'];
-            $scope.IncomeNorth = result['收款']['北区'];
-            $scope.IncomeSum = result['收款']['总计'];
-            $scope.IncomeStatisticList = JSON.parse(result['收款']['收款渠道']);
-            $scope.ChargeKZL = result['付款']['凯知乐'];
-            $scope.ChargeNorth = result['付款']['北区'];
-            $scope.ChargeSum = result['付款']['总计'];
-            $scope.ChargeStatisticList = JSON.parse(result['付款']['支出项目']);
+            $scope.BeginningLimitedFundKZL = result['期初可用资金-凯知乐-凯知乐贸易（天津）有限公司'];
+            $scope.BeginningLimitedFundNorth = result['期初可用资金-北区'];
+            $scope.BeginningLimitedFundMid= result['期初可用资金-中区'];
+            $scope.BeginningLimitedFundSouth = result['期初可用资金-南区'];
+            $scope.BeginningLimitedFundSum = result['期初可用资金-总和'];
+
+            $scope.EndLimitedFundKZL = result['期末可用资金-凯知乐-凯知乐贸易（天津）有限公司'];
+            $scope.EndLimitedFundNorth = result['期末可用资金-北区'];
+            $scope.EndLimitedFundMid= result['期末可用资金-中区'];
+            $scope.EndLimitedFundSouth = result['期末可用资金-南区'];
+            $scope.EndLimitedFundSum = result['期末可用资金-总和'];
+
+            $scope.IncomeKZL = result['凯知乐收款'];
+            $scope.IncomeNorth = result['北区收款'];
+            $scope.IncomeMid = result['中区收款'];
+            $scope.IncomeSouth = result['南区收款'];
+            $scope.IncomeSum = result['收款总计'];
+            $scope.IncomeStatisticList = JSON.parse(result['收款渠道']);
+
+            $scope.ChargeKZL = result['凯知乐付款'];
+            $scope.ChargeNorth = result['北区付款'];
+            $scope.ChargeMid = result['中区付款'];
+            $scope.ChargeSouth = result['南区付款'];
+            $scope.ChargeSum = result['付款总计'];
+            $scope.ChargeStatisticList = JSON.parse(result['付款渠道']);
         });
     };
 
@@ -1207,7 +1226,7 @@ app.controller('BankBalanceSearchController', function ($scope, SearchBankBalanc
         count: $scope.count
     };
     $scope.timeString = $filter('date')(new Date(), 'yyyy-MM-dd');
-    $scope.startTime = $scope.startTime;
+    $scope.startTime = "2019-06-01";
     $scope.endTime = $scope.timeString;
     $scope.accountTitle = '所有公司';
     //初始化分页

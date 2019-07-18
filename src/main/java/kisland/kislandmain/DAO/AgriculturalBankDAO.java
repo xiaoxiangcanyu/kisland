@@ -21,7 +21,7 @@ public interface AgriculturalBankDAO extends JpaRepository<AgriculturalBankDO,Lo
     /**
      * 根据时间段查询农行的数据
      */
-    @Query("select a from AgriculturalBankDO a where a.date between ?1 and ?2 group by a.date,a.accountTitle,a.accountBalance,a.accountBalance,a.amountCost,a.amountCost,a.amountIncome,a.bankName,a.otherPartyAccount,a.otherPartyName,a.otherPartyProvincesAndCities,a.transactionTime")
+    @Query("select a from AgriculturalBankDO a where a.date between ?1 and ?2 group by a.transactionTime,a.amountIncome,a.amountCost,a.otherPartyName")
     List<AgriculturalBankDO> findByDate(String startTime,String endTime);
 
     /**

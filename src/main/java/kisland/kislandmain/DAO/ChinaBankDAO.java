@@ -20,7 +20,7 @@ public interface ChinaBankDAO extends JpaRepository<ChinaBankDO,Long> {
     /**
      * 根据时间段查询农行的数据
      */
-    @Query("select a from ChinaBankDO a where a.date between ?1 and ?2")
+    @Query("select a from ChinaBankDO a where a.date between ?1 and ?2 group by a.date,a.accountTitle,a.transactionTime")
     List<ChinaBankDO> findByDate(String startTime, String endTime);
     /**
      * 根据时间段和公司名称查询农行的数据

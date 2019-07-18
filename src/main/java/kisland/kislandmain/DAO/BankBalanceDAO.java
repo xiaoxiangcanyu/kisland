@@ -20,4 +20,11 @@ public interface BankBalanceDAO extends JpaRepository<BankBalanceDO,Long> {
      */
     @Query("select a from BankBalanceDO a where a.date between ?1 and ?2")
     List<BankBalanceDO> findAllByDate(String startTime, String endTime);
+
+
+    /**
+     * 根据公司名查询当天最新余额
+     */
+    @Query("select a from BankBalanceDO a where  a.accountName = ?2 and a.date in (select max(b.date) from BankBalanceDO b where b.accountName = ?2 and b.date like %?1% )")
+    List<BankBalanceDO> findByLatestDateAndAccountName(String startTime,String companyName);
 }

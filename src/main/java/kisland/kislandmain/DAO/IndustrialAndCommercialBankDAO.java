@@ -21,12 +21,12 @@ public interface IndustrialAndCommercialBankDAO extends JpaRepository<Industrial
     /**
      * 根据时间段查询农行的数据
      */
-    @Query("select a from IndustrialAndCommercialBankDO a where a.date between ?1 and ?2")
+    @Query("select a from IndustrialAndCommercialBankDO a where a.date between ?1 and ?2 group by a.date,a.accountTitle,a.transactionTime,a.creditAmount,a.debitAmount")
     List<IndustrialAndCommercialBankDO> findByDate(String startTime, String endTime);
 
     /**
      * 根据时间段和公司名称查询农行的数据
      */
-    @Query("select a from IndustrialAndCommercialBankDO a where a.accountTitle =?3 and a.date between ?1 and ?2 group by a.date,a.accountTitle,a.transactionTime")
+    @Query("select a from IndustrialAndCommercialBankDO a where a.accountTitle =?3 and a.date between ?1 and ?2 group by a.date,a.accountTitle,a.transactionTime,a.creditAmount,a.debitAmount")
     List<IndustrialAndCommercialBankDO> findByDateAAndAccountTitle(String startTime,String endTime,String accountTitle);
 }

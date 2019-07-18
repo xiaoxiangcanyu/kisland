@@ -21,12 +21,12 @@ public interface MerchantsBankDAO extends JpaRepository<MerchantsBankDO,Long> {
     /**
      * 根据时间段查询农行的数据
      */
-    @Query("select a from MerchantsBankDO a where a.date between ?1 and ?2")
+    @Query("select a from MerchantsBankDO a where a.date between ?1 and ?2 group by a.date,a.accountTitle,a.debitAmount,a.creditAmount")
     List<MerchantsBankDO> findByDate(String startTime, String endTime);
 
     /**
      * 根据时间段和公司名称查询农行的数据
      */
-    @Query("select a from MerchantsBankDO a where a.accountTitle =?3 and a.date between ?1 and ?2 group by a.date,a.accountTitle")
+    @Query("select a from MerchantsBankDO a where a.accountTitle =?3 and a.date between ?1 and ?2 group by a.date,a.accountTitle,a.debitAmount,a.creditAmount")
     List<MerchantsBankDO> findByDateAAndAccountTitle(String startTime,String endTime,String accountTitle);
 }

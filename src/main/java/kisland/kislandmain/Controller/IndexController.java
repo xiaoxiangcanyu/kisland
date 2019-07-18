@@ -59,25 +59,19 @@ public class IndexController {
      */
     @RequestMapping(value = "/CapitalStatisticsList")
     @ResponseBody
-    Map<String,Map<String,String>>  findCapitalStatisticsList(@RequestParam(value = "startTime") String startTime,@RequestParam(value = "endTime") String endTime){
-
-        Map<String,Map<String,String>> map = new HashMap<>();
-        //=================================================北区收款统计===================================================================
-
-        Map<String,String> IncomeMap = northIncomeAndChargeService.getNorthIncomeByType(startTime,endTime);
-
-        //=================================================北区付款统计===================================================================
-
-        Map<String,String> chargeMap = northIncomeAndChargeService.getNorthChargeByType(startTime,endTime);
+    Map<String,String> findCapitalStatisticsList(@RequestParam(value = "startTime") String startTime,@RequestParam(value = "endTime") String endTime){
+        Map<String,String> finalMap = new HashMap<>();
+        Map<String,String> IncomeMap = incomeService.CombineAllIncome(startTime,endTime);
+        Map<String,String> ChargeMap = chargeService.CombineAllCharge(startTime,endTime);
+        finalMap.putAll(IncomeMap);
+        finalMap.putAll(ChargeMap);
         clearZero.ClearIncomeZeroMethod();
-        //============================================查询期初受限资金和期末受限资金==========================================================
-        Map<String, String> finalMap = bankBalanceService.findBankBalanceByDate(startTime,endTime);
         clearZero.ClearChargeZeroMethod();
+        //============================================查询期初受限资金和期末受限资金==========================================================
+        Map<String, String> BalanceMap = bankBalanceService.findBankBalanceByDate(startTime,endTime);
         //==================================================封装以上3项==========================================================
-        map.put("收款",IncomeMap);
-        map.put("付款",chargeMap);
-        map.put("受限资金",finalMap);
-        return map;
+        finalMap.putAll(BalanceMap);
+        return finalMap;
     }
 
     /**

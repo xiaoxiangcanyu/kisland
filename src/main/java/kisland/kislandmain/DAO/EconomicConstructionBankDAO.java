@@ -21,7 +21,7 @@ public interface EconomicConstructionBankDAO extends JpaRepository<EconomicConst
     /**
      * 根据时间段查询农行的数据
      */
-    @Query("select a from EconomicConstructionBankDO a where a.date between ?1 and ?2")
+    @Query("select a from EconomicConstructionBankDO a where a.date between ?1 and ?2 group by a.date,a.accountTitle,a.transactionTime")
     List<EconomicConstructionBankDO> findByDate(String startTime, String endTime);
 
     /**

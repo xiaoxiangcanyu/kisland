@@ -70,15 +70,14 @@ public class OperationBankBalance {
     }
 
     public static String getYesterday(String today){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = "";
         Calendar calendar = Calendar.getInstance();
         try {
             Date todayDate = simpleDateFormat.parse(today);
             calendar.setTime(todayDate);
             calendar.add(Calendar.DAY_OF_MONTH, -1);//前一天的时间
-             date = simpleDateFormat1.format(calendar.getTime());
+             date = simpleDateFormat.format(calendar.getTime());
 
         } catch (ParseException e) {
             e.printStackTrace();

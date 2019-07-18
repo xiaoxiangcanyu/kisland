@@ -1,4 +1,4 @@
-package kisland.kislandmain.Service.North;
+package kisland.kislandmain.Service.Mid;
 
 import com.alibaba.fastjson.JSON;
 import kisland.kislandmain.DO.*;
@@ -8,6 +8,7 @@ import kisland.kislandmain.Service.BankService.*;
 import kisland.kislandmain.Service.Income.IncomeService;
 import kisland.kislandmain.Service.Mapping.PaymentChannelService;
 import kisland.kislandmain.Service.Mapping.ReceivingChannelService;
+import kisland.kislandmain.Service.North.NorthIncomeAndChargeService;
 import kisland.kislandmain.Service.charge.ChargeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,9 @@ import java.util.*;
 import static kisland.kislandmain.Util.AddColumn.AddChargeColumnMethod;
 import static kisland.kislandmain.Util.AddColumn.AddIncomeColumnMethod;
 
-/**
- * 北方收付款服务
- */
 @Transactional
 @Service
-public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeService {
+public class MiddleIncomeAndChargeServiceImpl implements MiddleIncomeAndChargeService {
     @Autowired
     AgriculturalBankService agriculturalBankService;
     @Autowired
@@ -57,7 +55,7 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
 
 
     @Override
-    public Map<String, String> getNorthIncomeByType(String startTime, String endTime) {
+    public Map<String, String> getMidIncomeByType(String startTime, String endTime,List<IncomeCategoryDO> incomeCategoryDOS) {
         List<AgriculturalBankDO> agriculturalBankDOList = agriculturalBankService.findByDate(startTime, endTime);
         List<ChinaBankDO> chinaBankDOList = chinaBankService.findByDate(startTime, endTime);
         List<EconomicConstructionBankDO> economicConstructionBankDOList = economicConstructionBankService.findByDate(startTime, endTime);
@@ -66,37 +64,28 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
         List<MinshengBankDO> minshengBankDOList = minshengBankService.findByDate(startTime, endTime);
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         DecimalFormat decimalFormat1 = new DecimalFormat("#,##0.00");
-        List<AgriculturalBankDO> testList = new ArrayList<>();
-        List<IncomeCategoryDO> incomeCategoryDOS = incomeService.getIncomeService();
-        List<ReceivingMappingDO> list = receivingChannelService.findByTradeScope("北区");
+        List<ReceivingMappingDO> list = receivingChannelService.findByTradeScope("中区");
         Map<String, String> map = new HashMap();
         Map<String, String> map1 = new HashMap<>();
-        map1.put("北区", "0.00");
+        map1.put("中区", "0.00");
         Set<String> set = new LinkedHashSet<>();//公司名去重集合
-        Set<String> set1 = new LinkedHashSet<>();//支出项目去重集合
-
         for (ReceivingMappingDO receivingMappingDO : list) {
             set.add(receivingMappingDO.getLegelMajority());
         }
-
         for (String str : set) {
             double sum = 0.00;
             for (ReceivingMappingDO receivingMappingDO : list) {
                 try {
                     if (str.equals(receivingMappingDO.getLegelMajority())) {
                         if (receivingMappingDO.getBankAccount().matches(reg)) {
+                            Set<String> set1 = new LinkedHashSet<>();//支出项目去重集合
                             for (ChinaBankDO chinaBankDO : chinaBankDOList) {
                                 String uuid = chinaBankDO.getTradeAmount() + chinaBankDO.getPayeeName() + chinaBankDO.getAccountTitle() + chinaBankDO.getAccountHoldingBankNumberPayer() + chinaBankDO.getAccountHoldingBeneficiaryBankNumber() + chinaBankDO.getAfterTransactionBalance() + chinaBankDO.getBeneficiaryAccountBank() + chinaBankDO.getBusinessType() + chinaBankDO.getbDs() + chinaBankDO.getCustomerTransactionRef();
                                 if (str.equals(chinaBankDO.getAccountTitle()) && chinaBankDO.getPayeeName().equals(receivingMappingDO.getOtherAccountName())) {
                                     if (set1.add(uuid)) {
                                         for (IncomeCategoryDO incomeCategoryDO : incomeCategoryDOS) {
                                             if (incomeCategoryDO.getCategoryName().equals(receivingMappingDO.getReceivingChannel())) {
-                                                if (str.contains("凯知乐")) {
-                                                    incomeCategoryDO.setKzlCategoryValue(Double.parseDouble(incomeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(chinaBankDO.getTradeAmount().replace("-", "")) + "");
-                                                } else {
-                                                    incomeCategoryDO.setNorthCategoryValue(Double.parseDouble(incomeCategoryDO.getNorthCategoryValue()) + Double.parseDouble(chinaBankDO.getTradeAmount().replace("-", "")) + "");
-
-                                                }
+                                                incomeCategoryDO.setMiddleCategoryValue(Double.parseDouble(incomeCategoryDO.getMiddleCategoryValue()) + Double.parseDouble(chinaBankDO.getTradeAmount().replace("-", "")) + "");
                                             }
                                         }
                                         sum = sum + Double.parseDouble(chinaBankDO.getTradeAmount().replace("-", ""));
@@ -104,24 +93,22 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                 }
                             }
                         } else if (receivingMappingDO.getBankAccount().matches(reg1)) {
+                            Set<String> set1 = new LinkedHashSet<>();//支出项目去重集合
                             for (AgriculturalBankDO agriculturalBankDO : agriculturalBankDOList) {
+                                String uuid = agriculturalBankDO.getAmountIncome() + agriculturalBankDO.getDate() + agriculturalBankDO.getAccountTitle() + agriculturalBankDO.getTransactionTime() + agriculturalBankDO.getTradingPurpose() + agriculturalBankDO.getAmountCost() + agriculturalBankDO.getBankName() + agriculturalBankDO.getbDs() + agriculturalBankDO.getAmountIncome() + agriculturalBankDO.getOtherPartyProvincesAndCities();
                                 if (str.equals(agriculturalBankDO.getAccountTitle()) && agriculturalBankDO.getOtherPartyName().equals(receivingMappingDO.getOtherAccountName())) {
-                                    for (IncomeCategoryDO incomeCategoryDO : incomeCategoryDOS) {
-                                        if (incomeCategoryDO.getCategoryName().equals(receivingMappingDO.getReceivingChannel())) {
-                                            String uuid = incomeCategoryDO.getCategoryName() + "-" + agriculturalBankDO.getAmountIncome() + "-" + agriculturalBankDO.getAmountCost() + "-" + agriculturalBankDO.getDate() + "-" + agriculturalBankDO.getTradingPurpose() + "-" + agriculturalBankDO.getTransactionTime();
-                                            if (set1.add(uuid)) {
-                                                if (str.contains("凯知乐")) {
-                                                    incomeCategoryDO.setKzlCategoryValue(Double.parseDouble(incomeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(agriculturalBankDO.getAmountIncome().replace("-", "")) + "");
-                                                } else {
-                                                    incomeCategoryDO.setNorthCategoryValue(Double.parseDouble(incomeCategoryDO.getNorthCategoryValue()) + Double.parseDouble(agriculturalBankDO.getAmountIncome().replace("-", "")) + "");
-                                                }
-                                                sum = sum + Double.parseDouble(agriculturalBankDO.getAmountIncome().replace("-", ""));
+                                    if (set1.add(uuid)) {
+                                        for (IncomeCategoryDO incomeCategoryDO : incomeCategoryDOS) {
+                                            if (incomeCategoryDO.getCategoryName().equals(receivingMappingDO.getReceivingChannel())) {
+                                                incomeCategoryDO.setMiddleCategoryValue(Double.parseDouble(incomeCategoryDO.getMiddleCategoryValue()) + Double.parseDouble(agriculturalBankDO.getAmountIncome().replace("-", "")) + "");
                                             }
                                         }
+                                        sum = sum + Double.parseDouble(agriculturalBankDO.getAmountIncome().replace("-", ""));
                                     }
                                 }
                             }
                         } else if (receivingMappingDO.getBankAccount().matches(reg2)) {
+                            Set<String> set1 = new LinkedHashSet<>();//支出项目去重集合
                             for (MerchantsBankDO merchantsBankDO : merchantsBankDOList) {
                                 String uuid = merchantsBankDO.getAccountTitle() + merchantsBankDO.getDate() + merchantsBankDO.getDebitAmount() + merchantsBankDO.getAttachmentInformation() + merchantsBankDO.getBalance() + merchantsBankDO.getBankAbstract() + merchantsBankDO.getBillingNumber() + merchantsBankDO.getbDs() + merchantsBankDO.getTransactionType() + merchantsBankDO.getBusinessReferenceNumber();
                                 if (str.equals(merchantsBankDO.getAccountTitle()) && merchantsBankDO.equals(merchantsBankDO.getPayerPayeeName())) {
@@ -129,12 +116,7 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                         if (merchantsBankDO.getDebitAmount() != null && merchantsBankDO.getDebitAmount().length() > 0) {
                                             for (IncomeCategoryDO incomeCategoryDO : incomeCategoryDOS) {
                                                 if (incomeCategoryDO.getCategoryName().equals(receivingMappingDO.getReceivingChannel())) {
-                                                    if (str.contains("凯知乐")) {
-                                                        incomeCategoryDO.setKzlCategoryValue(Double.parseDouble(incomeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(merchantsBankDO.getCreditAmount().replace("-", "")) + "");
-                                                    } else {
-                                                        incomeCategoryDO.setNorthCategoryValue(Double.parseDouble(incomeCategoryDO.getNorthCategoryValue()) + Double.parseDouble(merchantsBankDO.getCreditAmount().replace("-", "")) + "");
-
-                                                    }
+                                                    incomeCategoryDO.setMiddleCategoryValue(Double.parseDouble(incomeCategoryDO.getMiddleCategoryValue()) + Double.parseDouble(merchantsBankDO.getCreditAmount().replace("-", "")) + "");
                                                 }
                                             }
                                             sum = sum + Double.parseDouble(merchantsBankDO.getCreditAmount().replace("-", ""));
@@ -143,6 +125,7 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                 }
                             }
                         } else if (receivingMappingDO.getBankAccount().matches(reg3)) {
+                            Set<String> set1 = new LinkedHashSet<>();//支出项目去重集合
                             for (EconomicConstructionBankDO economicConstructionBankDO : economicConstructionBankDOList) {
                                 String uuid = economicConstructionBankDO.getAccountName() + economicConstructionBankDO.getAccountTitle() + economicConstructionBankDO.getCounterAccount() + economicConstructionBankDO.getAccountNumber() + economicConstructionBankDO.getBalance() + economicConstructionBankDO.getbDs() + economicConstructionBankDO.getBillingDate() + economicConstructionBankDO.getCounterName() + economicConstructionBankDO.getCurrency() + economicConstructionBankDO.getDocumentNumber() + economicConstructionBankDO.getRemark();
                                 if (economicConstructionBankDO.getAccountTitle().equals(str) && economicConstructionBankDO.getCounterAccount().equals(receivingMappingDO.getOtherAccountName())) {
@@ -150,21 +133,17 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                         if (economicConstructionBankDO.getDebitAmount() != null && economicConstructionBankDO.getDebitAmount().length() > 0) {
                                             for (IncomeCategoryDO incomeCategoryDO : incomeCategoryDOS) {
                                                 if (incomeCategoryDO.getCategoryName().equals(receivingMappingDO.getReceivingChannel())) {
-                                                    if (str.contains("凯知乐")) {
-                                                        incomeCategoryDO.setKzlCategoryValue(Double.parseDouble(incomeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(economicConstructionBankDO.getCreditAmount().replace("-", "")) + "");
-                                                    } else {
-                                                        incomeCategoryDO.setNorthCategoryValue(Double.parseDouble(incomeCategoryDO.getNorthCategoryValue()) + Double.parseDouble(economicConstructionBankDO.getCreditAmount().replace("-", "")) + "");
-
-                                                    }
+                                                    incomeCategoryDO.setMiddleCategoryValue(Double.parseDouble(incomeCategoryDO.getMiddleCategoryValue()) + Double.parseDouble(economicConstructionBankDO.getCreditAmount().replace("-", "")) + "");
                                                 }
                                             }
                                             sum = sum + Double.parseDouble(economicConstructionBankDO.getCreditAmount().replace("-", ""));
-
                                         }
                                     }
+
                                 }
                             }
                         } else if (receivingMappingDO.getBankAccount().matches(reg4)) {
+                            Set<String> set1 = new LinkedHashSet<>();//支出项目去重集合
                             for (MinshengBankDO minshengBankDO : minshengBankDOList) {
                                 String uuid = minshengBankDO.getAccountBalance() + minshengBankDO.getOtherAccounts() + minshengBankDO.getAccountName() + minshengBankDO.getAccountTitle() + minshengBankDO.getBankAccount() + minshengBankDO.getbDs() + minshengBankDO.getDebitAmount() + minshengBankDO.getDocumentNumber() + minshengBankDO.getDate();
                                 if (minshengBankDO.getAccountTitle().equals(str) && minshengBankDO.getOtherAccounts().equals(receivingMappingDO.getOtherAccountName())) {
@@ -172,11 +151,7 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                         if (minshengBankDO.getDebitAmount() != null && minshengBankDO.getDebitAmount().length() > 0) {
                                             for (IncomeCategoryDO incomeCategoryDO : incomeCategoryDOS) {
                                                 if (incomeCategoryDO.getCategoryName().equals(receivingMappingDO.getOtherAccountName())) {
-                                                    if (str.contains("凯知乐")) {
-                                                        incomeCategoryDO.setKzlCategoryValue(Double.parseDouble(incomeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(minshengBankDO.getCreditAmount().replace("-", "")) + "");
-                                                    } else {
-                                                        incomeCategoryDO.setNorthCategoryValue(Double.parseDouble(incomeCategoryDO.getNorthCategoryValue()) + Double.parseDouble(minshengBankDO.getCreditAmount().replace("-", "")) + "");
-                                                    }
+                                                    incomeCategoryDO.setMiddleCategoryValue(Double.parseDouble(incomeCategoryDO.getMiddleCategoryValue()) + Double.parseDouble(minshengBankDO.getCreditAmount().replace("-", "")) + "");
                                                 }
                                             }
                                             sum = sum + Double.parseDouble(minshengBankDO.getCreditAmount().replace("-", ""));
@@ -185,6 +160,7 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                 }
                             }
                         } else if (receivingMappingDO.getBankAccount().matches(reg5)) {
+                            Set<String> set1 = new LinkedHashSet<>();//支出项目去重集合
                             for (IndustrialAndCommercialBankDO industrialAndCommercialBankDO : industrialAndCommercialBankDOList) {
                                 String uuid = industrialAndCommercialBankDO.getAccountNumber() + industrialAndCommercialBankDO.getOtherPartyCompanyName() + industrialAndCommercialBankDO.getDebitAmount() + industrialAndCommercialBankDO.getOtherPartyAccountNumber() + industrialAndCommercialBankDO.getAccountTitle() + industrialAndCommercialBankDO.getBalance() + industrialAndCommercialBankDO.getCreditAmount() + industrialAndCommercialBankDO.getDate();
                                 if (industrialAndCommercialBankDO.getAccountTitle().equals(str) && industrialAndCommercialBankDO.getOtherPartyCompanyName().equals(receivingMappingDO.getOtherAccountName())) {
@@ -192,15 +168,10 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                         if (industrialAndCommercialBankDO.getDebitAmount() != null && industrialAndCommercialBankDO.getDebitAmount().length() > 0) {
                                             for (IncomeCategoryDO incomeCategoryDO : incomeCategoryDOS) {
                                                 if (incomeCategoryDO.getCategoryName().equals(receivingMappingDO.getReceivingChannel())) {
-                                                    if (str.contains("凯知乐")) {
-                                                        incomeCategoryDO.setKzlCategoryValue(Double.parseDouble(incomeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(industrialAndCommercialBankDO.getCreditAmount().replace("-", "")) + "");
-                                                    } else {
-                                                        incomeCategoryDO.setNorthCategoryValue(Double.parseDouble(incomeCategoryDO.getNorthCategoryValue()) + Double.parseDouble(industrialAndCommercialBankDO.getCreditAmount().replace("-", "")) + "");
-                                                    }
+                                                    incomeCategoryDO.setMiddleCategoryValue(Double.parseDouble(incomeCategoryDO.getMiddleCategoryValue()) + Double.parseDouble(industrialAndCommercialBankDO.getCreditAmount().replace("-", "")) + "");
                                                 }
                                             }
                                             sum = sum + Double.parseDouble(industrialAndCommercialBankDO.getCreditAmount().replace("-", ""));
-
                                         }
                                     }
                                 }
@@ -216,38 +187,31 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
             );
         }
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            if (entry.getKey().contains("凯知乐")) {
-                map1.put("凯知乐", entry.getValue());
-            } else {
-                Double sum = Double.parseDouble(entry.getValue());
-                map1.put("北区", decimalFormat.format(Double.parseDouble(map1.get("北区")) + sum));
-            }
+            Double sum = Double.parseDouble(entry.getValue());
+            map1.put("中区", Double.parseDouble(map1.get("中区")) + sum + "");
         }
         for (IncomeCategoryDO incomeCategoryDO : incomeCategoryDOS) {
-            incomeCategoryDO.setKzlCategoryValue(decimalFormat.format(Double.parseDouble(incomeCategoryDO.getKzlCategoryValue())));
-            incomeCategoryDO.setNorthCategoryValue(decimalFormat.format(Double.parseDouble(incomeCategoryDO.getNorthCategoryValue())));
+            incomeCategoryDO.setMiddleCategoryValue(decimalFormat.format(Double.parseDouble(incomeCategoryDO.getMiddleCategoryValue())));
         }
-        //各公司求和
-        map1.put("总计", decimalFormat.format(Double.parseDouble(map1.get("凯知乐")) + Double.parseDouble(map1.get("北区"))));
         //        ============================================给收款种类每三位加一个逗号=================================================
         for (IncomeCategoryDO incomeCategoryDO : incomeCategoryDOS) {
             try {
-                incomeCategoryDO.setNorthCategoryValue(decimalFormat1.format(decimalFormat.parse(incomeCategoryDO.getNorthCategoryValue())));
-                incomeCategoryDO.setKzlCategoryValue(decimalFormat1.format(decimalFormat.parse(incomeCategoryDO.getKzlCategoryValue())));
+                incomeCategoryDO.setMiddleCategoryValue(decimalFormat1.format(decimalFormat.parse(incomeCategoryDO.getMiddleCategoryValue())));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
+//        System.out.println(JSON.toJSONString(incomeCategoryDOS));
         //        ============================================给收款种类每三位加一个逗号=================================================
         map1.put("收款渠道", JSON.toJSONString(incomeCategoryDOS));
-        System.out.println(JSON.toJSONString(incomeCategoryDOS));
-        map1 = AddIncomeColumnMethod(map1, "北区");
+        map1 = AddIncomeColumnMethod(map1,"中区");
+//        System.out.println(JSON.toJSONString(map1, true));
 //======================================读取表中的数据+++++++++++++++++++++++++++++++++++++++++++++++++
         return map1;
     }
 
     @Override
-    public Map<String, String> getNorthChargeByType(String startTime, String endTime) {
+    public Map<String, String> getMidChargeByType(String startTime, String endTime,List<ChargeCategoryDO> chargeCategoryDOS) {
         List<AgriculturalBankDO> agriculturalBankDOList = agriculturalBankService.findByDate(startTime, endTime);
         List<ChinaBankDO> chinaBankDOList = chinaBankService.findByDate(startTime, endTime);
         List<EconomicConstructionBankDO> economicConstructionBankDOList = economicConstructionBankService.findByDate(startTime, endTime);
@@ -256,12 +220,10 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
         List<MinshengBankDO> minshengBankDOList = minshengBankService.findByDate(startTime, endTime);
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         DecimalFormat decimalFormat1 = new DecimalFormat("#,##0.00");
-
-        List<ChargeCategoryDO> chargeCategoryDOS = chargeService.getChargeList();
-        List<PaymentMappingDO> list = paymentChannelService.findByTradescope("北区");
+        List<PaymentMappingDO> list = paymentChannelService.findByTradescope("中区");
         Map<String, String> map = new HashMap();
         Map<String, String> map1 = new HashMap<>();
-        map1.put("北区", "0.00");
+        map1.put("中区", "0.00");
         Set<String> set = new LinkedHashSet<>();//公司名去重集合
 
         for (PaymentMappingDO paymentMappingDO : list) {
@@ -281,12 +243,7 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                     if (set1.add(uuid)) {
                                         for (ChargeCategoryDO chargeCategoryDO : chargeCategoryDOS) {
                                             if (chargeCategoryDO.getCategoryName().equals(paymentMappingDO.getExpendproject())) {
-                                                if (str.contains("凯知乐")) {
-                                                    chargeCategoryDO.setKzlCategoryValue(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(chinaBankDO.getTradeAmount().replace("-", "")) + "");
-                                                } else {
-                                                    chargeCategoryDO.setNorthCategoryValue(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(chinaBankDO.getTradeAmount().replace("-", "")) + "");
-
-                                                }
+                                                chargeCategoryDO.setMiddleCategoryValue(Double.parseDouble(chargeCategoryDO.getMiddleCategoryValue()) + Double.parseDouble(chinaBankDO.getTradeAmount().replace("-", "")) + "");
                                             }
                                         }
                                         sum = sum + Double.parseDouble(chinaBankDO.getTradeAmount().replace("-", ""));
@@ -301,11 +258,7 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                     if (set1.add(uuid)) {
                                         for (ChargeCategoryDO chargeCategoryDO : chargeCategoryDOS) {
                                             if (chargeCategoryDO.getCategoryName().equals(paymentMappingDO.getExpendproject())) {
-                                                if (str.contains("凯知乐")) {
-                                                    chargeCategoryDO.setKzlCategoryValue(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(agriculturalBankDO.getAmountCost().replace("-", "")) + "");
-                                                } else {
-                                                    chargeCategoryDO.setNorthCategoryValue(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(agriculturalBankDO.getAmountCost().replace("-", "")) + "");
-                                                }
+                                                chargeCategoryDO.setMiddleCategoryValue(Double.parseDouble(chargeCategoryDO.getMiddleCategoryValue()) + Double.parseDouble(agriculturalBankDO.getAmountCost().replace("-", "")) + "");
                                             }
                                         }
                                         sum = sum + Double.parseDouble(agriculturalBankDO.getAmountCost().replace("-", ""));
@@ -321,11 +274,7 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                         if (set1.add(uuid)) {
                                             for (ChargeCategoryDO chargeCategoryDO : chargeCategoryDOS) {
                                                 if (chargeCategoryDO.getCategoryName().equals(paymentMappingDO.getExpendproject())) {
-                                                    if (str.contains("凯知乐")) {
-                                                        chargeCategoryDO.setKzlCategoryValue(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(merchantsBankDO.getDebitAmount().replace("-", "")) + "");
-                                                    } else {
-                                                        chargeCategoryDO.setNorthCategoryValue(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(merchantsBankDO.getDebitAmount().replace("-", "")) + "");
-                                                    }
+                                                    chargeCategoryDO.setMiddleCategoryValue(Double.parseDouble(chargeCategoryDO.getMiddleCategoryValue()) + Double.parseDouble(merchantsBankDO.getDebitAmount().replace("-", "")) + "");
                                                 }
                                             }
                                             sum = sum + Double.parseDouble(merchantsBankDO.getDebitAmount().replace("-", ""));
@@ -342,11 +291,7 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                         if (economicConstructionBankDO.getDebitAmount() != null && economicConstructionBankDO.getDebitAmount().length() > 0) {
                                             for (ChargeCategoryDO chargeCategoryDO : chargeCategoryDOS) {
                                                 if (chargeCategoryDO.getCategoryName().equals(paymentMappingDO.getExpendproject())) {
-                                                    if (str.contains("凯知乐")) {
-                                                        chargeCategoryDO.setKzlCategoryValue(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(economicConstructionBankDO.getDebitAmount().replace("-", "")) + "");
-                                                    } else {
-                                                        chargeCategoryDO.setNorthCategoryValue(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(economicConstructionBankDO.getDebitAmount().replace("-", "")) + "");
-                                                    }
+                                                    chargeCategoryDO.setMiddleCategoryValue(Double.parseDouble(chargeCategoryDO.getMiddleCategoryValue()) + Double.parseDouble(economicConstructionBankDO.getDebitAmount().replace("-", "")) + "");
                                                 }
                                             }
                                             sum = sum + Double.parseDouble(economicConstructionBankDO.getDebitAmount().replace("-", ""));
@@ -363,12 +308,7 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                         if (set1.add(uuid)) {
                                             for (ChargeCategoryDO chargeCategoryDO : chargeCategoryDOS) {
                                                 if (chargeCategoryDO.getCategoryName().equals(paymentMappingDO.getExpendproject())) {
-                                                    if (str.contains("凯知乐")) {
-                                                        chargeCategoryDO.setKzlCategoryValue(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(minshengBankDO.getDebitAmount().replace("-", "")) + "");
-                                                    } else {
-                                                        chargeCategoryDO.setNorthCategoryValue(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(minshengBankDO.getDebitAmount().replace("-", "")) + "");
-
-                                                    }
+                                                    chargeCategoryDO.setMiddleCategoryValue(Double.parseDouble(chargeCategoryDO.getMiddleCategoryValue()) + Double.parseDouble(minshengBankDO.getDebitAmount().replace("-", "")) + "");
                                                 }
                                             }
                                             sum = sum + Double.parseDouble(minshengBankDO.getDebitAmount().replace("-", ""));
@@ -384,18 +324,14 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
                                     if (industrialAndCommercialBankDO.getDebitAmount() != null && industrialAndCommercialBankDO.getDebitAmount().length() > 0) {
                                         if (set1.add(uuid)) {
                                             for (ChargeCategoryDO chargeCategoryDO : chargeCategoryDOS) {
-                                                if (chargeCategoryDO.getCategoryName().equals(paymentMappingDO.getExpendproject())) {
-                                                    if (str.contains("凯知乐")) {
-                                                        chargeCategoryDO.setKzlCategoryValue(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(industrialAndCommercialBankDO.getDebitAmount().replace("-", "")) + "");
-                                                    } else {
-                                                        chargeCategoryDO.setNorthCategoryValue(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue()) + Double.parseDouble(industrialAndCommercialBankDO.getDebitAmount().replace("-", "")) + "");
-                                                    }
-                                                }
+                                            if (chargeCategoryDO.getCategoryName().equals(paymentMappingDO.getExpendproject())) {
+                                                chargeCategoryDO.setMiddleCategoryValue(Double.parseDouble(chargeCategoryDO.getMiddleCategoryValue()) + Double.parseDouble(industrialAndCommercialBankDO.getDebitAmount().replace("-", "")) + "");
                                             }
-                                            sum = sum + Double.parseDouble(industrialAndCommercialBankDO.getDebitAmount().replace("-", ""));
-
                                         }
+                                        sum = sum + Double.parseDouble(industrialAndCommercialBankDO.getDebitAmount().replace("-", ""));
+
                                     }
+                                }
                                 }
                             }
                         }
@@ -409,35 +345,27 @@ public class NorthIncomeAndChargeServiceImpl implements NorthIncomeAndChargeServ
             );
         }
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            if (entry.getKey().contains("凯知乐")) {
-                map1.put("凯知乐", entry.getValue());
-            } else {
-                Double sum = Double.parseDouble(entry.getValue());
-                map1.put("北区", Double.parseDouble(map1.get("北区")) + sum + "");
-            }
-        }
-        for (ChargeCategoryDO chargeCategoryDO : chargeCategoryDOS) {
-            chargeCategoryDO.setKzlCategoryValue(decimalFormat.format(Double.parseDouble(chargeCategoryDO.getKzlCategoryValue())));
-            chargeCategoryDO.setNorthCategoryValue(decimalFormat.format(Double.parseDouble(chargeCategoryDO.getNorthCategoryValue())));
+            Double sum = Double.parseDouble(entry.getValue());
+            map1.put("中区", Double.parseDouble(map1.get("中区")) + sum + "");
 
         }
-        map1.put("总计", decimalFormat.format(Double.parseDouble(map1.get("凯知乐")) + Double.parseDouble(map1.get("北区"))));
+        for (ChargeCategoryDO chargeCategoryDO : chargeCategoryDOS) {
+            chargeCategoryDO.setMiddleCategoryValue(decimalFormat.format(Double.parseDouble(chargeCategoryDO.getMiddleCategoryValue())));
+        }
+        map1.put("总计", decimalFormat.format(Double.parseDouble(map1.get("中区"))));
 //        ============================================给付款种类每三位加一个逗号=================================================
         for (ChargeCategoryDO chargeCategoryDO : chargeCategoryDOS) {
             try {
-                chargeCategoryDO.setNorthCategoryValue(decimalFormat1.format(decimalFormat.parse(chargeCategoryDO.getNorthCategoryValue())));
-                chargeCategoryDO.setKzlCategoryValue(decimalFormat1.format(decimalFormat.parse(chargeCategoryDO.getKzlCategoryValue())));
+                chargeCategoryDO.setMiddleCategoryValue(decimalFormat1.format(decimalFormat.parse(chargeCategoryDO.getMiddleCategoryValue())));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
         //        ============================================给付款种类每三位加一个逗号=================================================
-
+        System.out.println(JSON.toJSONString(chargeCategoryDOS));
         map1.put("支出项目", JSON.toJSONString(chargeCategoryDOS));
-        map1 = AddChargeColumnMethod(map1, "北区");
+        map1 = AddChargeColumnMethod(map1,"中区");
         System.out.println(JSON.toJSONString(map1, true));
         return map1;
     }
-
-
 }
